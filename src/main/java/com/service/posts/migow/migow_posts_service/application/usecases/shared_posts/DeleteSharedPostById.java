@@ -2,9 +2,12 @@ package com.service.posts.migow.migow_posts_service.application.usecases.shared_
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.SharedPostRepository;
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.shared_posts.DeleteSharedPostByIdUseCase;
 
+@Component
 public class DeleteSharedPostById implements DeleteSharedPostByIdUseCase {
     private final SharedPostRepository sharedPostRepository;
 

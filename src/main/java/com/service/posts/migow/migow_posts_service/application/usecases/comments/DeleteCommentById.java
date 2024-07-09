@@ -1,9 +1,12 @@
 package com.service.posts.migow.migow_posts_service.application.usecases.comments;
 
+import org.springframework.stereotype.Component;
+
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.DeleteCommentByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.pks.CommentPK;
 
+@Component
 public class DeleteCommentById implements DeleteCommentByIdUseCase {
     private final CommentRepository commentRepository;
 

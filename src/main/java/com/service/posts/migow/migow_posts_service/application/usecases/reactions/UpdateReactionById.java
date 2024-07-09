@@ -2,10 +2,13 @@ package com.service.posts.migow.migow_posts_service.application.usecases.reactio
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
+
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reactions.UpdateReactionByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 
+@Component
 public class UpdateReactionById implements UpdateReactionByIdUseCase {
     private final ReactionRepository reactionRepository;
 

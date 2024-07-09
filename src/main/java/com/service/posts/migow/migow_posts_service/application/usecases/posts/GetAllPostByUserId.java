@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
 
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.PostRepository;
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.GetCommentCountByPostIdUseCase;
@@ -12,6 +13,7 @@ import com.service.posts.migow.migow_posts_service.application.interfaces.usecas
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.shared_posts.GetSharedPostCountByPostIdUseCase;
 import com.service.posts.migow.migow_posts_service.infra.http.dtos.PostDTO;
 
+@Component
 public class GetAllPostByUserId implements GetAllPostByUserIdUseCase {
 
     private final PostRepository postRepository;
