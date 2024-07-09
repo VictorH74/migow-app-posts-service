@@ -1,4 +1,4 @@
-package com.service.posts.migow.migow_posts_service.pks;
+package com.service.posts.migow.migow_posts_service.domain.pks;
 
 import java.util.Objects;
 import java.util.UUID;

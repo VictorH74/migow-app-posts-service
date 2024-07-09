@@ -1,10 +1,10 @@
-package com.service.posts.migow.migow_posts_service.pks;
+package com.service.posts.migow.migow_posts_service.domain.pks;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.service.posts.migow.migow_posts_service.entities.Comment;
-import com.service.posts.migow.migow_posts_service.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
+import com.service.posts.migow.migow_posts_service.domain.entities.User;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;

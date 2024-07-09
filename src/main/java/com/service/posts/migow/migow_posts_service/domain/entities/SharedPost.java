@@ -1,28 +1,28 @@
-package com.service.posts.migow.migow_posts_service.entities;
+package com.service.posts.migow.migow_posts_service.domain.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-import com.service.posts.migow.migow_posts_service.pks.PostShareActivityRecordPK;
+import com.service.posts.migow.migow_posts_service.domain.pks.SharedPostPK;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "db_post_share_activity_record")
-public class PostShareActivityRecord implements Serializable {
-    final private PostShareActivityRecordPK id = new PostShareActivityRecordPK();
+public class SharedPost implements Serializable {
+    final private SharedPostPK id = new SharedPostPK();
     private Instant createdAt;
 
-    public PostShareActivityRecord() {
+    public SharedPost() {
     }
 
-    public PostShareActivityRecord(Instant createdAt) {
+    public SharedPost(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
-    public PostShareActivityRecordPK getId() {
+    public SharedPostPK getId() {
         return id;
     }
 
@@ -47,7 +47,7 @@ public class PostShareActivityRecord implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        PostShareActivityRecord other = (PostShareActivityRecord) obj;
+        SharedPost other = (SharedPost) obj;
         return Objects.equals(id, other.id);
     }
 

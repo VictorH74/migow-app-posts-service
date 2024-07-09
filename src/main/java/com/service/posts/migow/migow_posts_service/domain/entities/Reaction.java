@@ -1,10 +1,10 @@
-package com.service.posts.migow.migow_posts_service.entities;
+package com.service.posts.migow.migow_posts_service.domain.entities;
 
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.service.posts.migow.migow_posts_service.pks.ReactionTarget;
+import com.service.posts.migow.migow_posts_service.domain.pks.ReactionTarget;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;

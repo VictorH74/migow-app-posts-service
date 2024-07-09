@@ -1,12 +1,12 @@
-package com.service.posts.migow.migow_posts_service.DTOs;
+package com.service.posts.migow.migow_posts_service.infra.http.dtos;
 
 import java.time.Instant;
 import java.util.Set;
 import java.util.UUID;
 
-import com.service.posts.migow.migow_posts_service.entities.Media;
-import com.service.posts.migow.migow_posts_service.entities.Post;
-import com.service.posts.migow.migow_posts_service.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.entities.Media;
+import com.service.posts.migow.migow_posts_service.domain.entities.Post;
+import com.service.posts.migow.migow_posts_service.domain.entities.User;
 
 public class PostDTO extends Post {
     private Long reactCount;

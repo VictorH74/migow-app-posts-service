@@ -1,4 +1,4 @@
-package com.service.posts.migow.migow_posts_service.entities;
+package com.service.posts.migow.migow_posts_service.domain.entities;
 
 import java.util.Objects;
 

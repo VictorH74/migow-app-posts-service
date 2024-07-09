@@ -1,36 +1,31 @@
-package com.service.posts.migow.migow_posts_service.entities;
+package com.service.posts.migow.migow_posts_service.domain.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-import com.service.posts.migow.migow_posts_service.pks.CommentPK;
+import com.service.posts.migow.migow_posts_service.domain.pks.ReplyCommentPK;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 
-@Entity
-@Table(name = "db_comment")
-public class Comment implements Serializable {
-
+public class ReplyComment implements Serializable {
     @EmbeddedId
-    final private CommentPK id = new CommentPK();
+    final private ReplyCommentPK id = new ReplyCommentPK();
     @Column(name = "content", nullable = false)
     private String content;
     private Instant createdAt;
 
-    public Comment() {
+    public ReplyComment() {
         this.createdAt = Instant.now();
     }
 
-    public Comment(String content, Instant createdAt) {
+    public ReplyComment(String content, Instant createdAt) {
         this.content = content;
         this.createdAt = createdAt;
     }
 
-    public CommentPK getId() {
+    public ReplyCommentPK getId() {
         return id;
     }
 
@@ -59,12 +54,12 @@ public class Comment implements Serializable {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null || getClass() != obj.getClass())
+        if (obj == null)
             return false;
-        Comment other = (Comment) obj;
+        if (getClass() != obj.getClass())
+            return false;
+        ReplyComment other = (ReplyComment) obj;
         return Objects.equals(id, other.id);
     }
-
-    
 
 }

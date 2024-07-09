@@ -1,28 +1,34 @@
-package com.service.posts.migow.migow_posts_service.pks;
+package com.service.posts.migow.migow_posts_service.domain.pks;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-import com.service.posts.migow.migow_posts_service.entities.Post;
-import com.service.posts.migow.migow_posts_service.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.entities.Post;
+import com.service.posts.migow.migow_posts_service.domain.entities.User;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Embeddable
-public class PostShareActivityRecordPK implements Serializable {
+public class CommentPK implements Serializable {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne
+    @JoinColumn(name = "post_id")
     private Post post;
 
     public User getUser() {
         return user;
     }
 
-    public Post getPost() {
-        return post;
-    }
-
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Post getPost() {
+        return post;
     }
 
     public void setPost(Post post) {
@@ -38,11 +44,9 @@ public class PostShareActivityRecordPK implements Serializable {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        if (obj == null)
+        if (obj == null || getClass() != obj.getClass())
             return false;
-        if (getClass() != obj.getClass())
-            return false;
-        PostShareActivityRecordPK other = (PostShareActivityRecordPK) obj;
+        CommentPK other = (CommentPK) obj;
         return Objects.equals(user, other.user) && Objects.equals(post, other.post);
     }
 
