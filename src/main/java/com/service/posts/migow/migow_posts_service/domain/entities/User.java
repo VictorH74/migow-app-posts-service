@@ -7,19 +7,17 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 
 @Entity
-@Table(name = "db_user")
+@Table(name = "users")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(generator = "UUID")
     private UUID id;
-    @Column(name = "username", nullable = false, length = 10)
+    @Column(name = "username", nullable = false, length = 25)
     private String username;
     @Column(name = "name", nullable = false, length = 50)
     private String name;
@@ -28,6 +26,14 @@ public class User implements Serializable {
     private String email;
 
     final private Instant createdAt;
+
+    public User(UUID id, String username, String name, String email) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.createdAt = Instant.now();
+    }
 
     public User(UUID id, String username, String name, String email, Instant createdAt) {
         this.id = id;
@@ -57,9 +63,12 @@ public class User implements Serializable {
         return email;
     }
 
-
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
     }
 
     public void setUsername(String username) {
@@ -73,7 +82,6 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     @Override
     public boolean equals(Object obj) {

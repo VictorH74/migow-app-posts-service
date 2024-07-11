@@ -7,10 +7,13 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.ManyToOne;
 
 @Embeddable
 public class SharedPostPK implements Serializable {
+    @ManyToOne
     private User user;
+    @ManyToOne
     private Post post;
 
     public User getUser() {

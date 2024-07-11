@@ -3,20 +3,28 @@ package com.service.posts.migow.migow_posts_service.domain.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
-
-import com.service.posts.migow.migow_posts_service.domain.pks.CommentPK;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "db_comment")
+@Table(name = "comments")
 public class Comment implements Serializable {
-
-    @EmbeddedId
-    final private CommentPK id = new CommentPK();
+    @Id
+    @GeneratedValue(generator = "UUID")
+    private UUID id;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
     @Column(name = "content", nullable = false)
     private String content;
     private Instant createdAt;
@@ -25,13 +33,24 @@ public class Comment implements Serializable {
         this.createdAt = Instant.now();
     }
 
-    public Comment(String content, Instant createdAt) {
+    public Comment(UUID id, User owner, Post post, String content, Instant createdAt) {
+        this.id = id;
+        this.owner = owner;
+        this.post = post;
         this.content = content;
         this.createdAt = createdAt;
     }
 
-    public CommentPK getId() {
+    public UUID getId() {
         return id;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public Post getPost() {
+        return post;
     }
 
     public String getContent() {
@@ -40,6 +59,18 @@ public class Comment implements Serializable {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
     }
 
     public void setContent(String content) {
@@ -64,7 +95,5 @@ public class Comment implements Serializable {
         Comment other = (Comment) obj;
         return Objects.equals(id, other.id);
     }
-
-    
 
 }

@@ -4,36 +4,40 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
-import com.service.posts.migow.migow_posts_service.domain.pks.ReactionTarget;
-
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "db_reaction")
+@Table(name = "reactions")
 public class Reaction implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
-    @Embedded
-    private ReactionTarget target;
+    private String target;
+    private int type;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
 
     public Reaction() {
     }
 
-    public Reaction(UUID id, ReactionTarget target) {
+    public Reaction(UUID id, String target, int type, User owner) {
         this.id = id;
         this.target = target;
+        this.type = type;
+        this.owner = owner;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public ReactionTarget getTarget() {
+    public String getTarget() {
         return target;
     }
 
@@ -41,7 +45,7 @@ public class Reaction implements Serializable {
         this.id = id;
     }
 
-    public void setTarget(ReactionTarget target) {
+    public void setTarget(String target) {
         this.target = target;
     }
 
@@ -60,6 +64,22 @@ public class Reaction implements Serializable {
             return false;
         Reaction other = (Reaction) obj;
         return Objects.equals(id, other.id);
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
 }

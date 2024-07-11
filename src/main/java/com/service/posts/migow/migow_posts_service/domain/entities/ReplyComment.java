@@ -3,15 +3,29 @@ package com.service.posts.migow.migow_posts_service.domain.entities;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
-
-import com.service.posts.migow.migow_posts_service.domain.pks.ReplyCommentPK;
+import java.util.UUID;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "reply_comments")
 public class ReplyComment implements Serializable {
-    @EmbeddedId
-    final private ReplyCommentPK id = new ReplyCommentPK();
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private User owner;
+    @ManyToOne
+    @JoinColumn(name = "comment_id", nullable = false)
+    private Comment comment;
     @Column(name = "content", nullable = false)
     private String content;
     private Instant createdAt;
@@ -20,13 +34,21 @@ public class ReplyComment implements Serializable {
         this.createdAt = Instant.now();
     }
 
-    public ReplyComment(String content, Instant createdAt) {
+    public ReplyComment(UUID id, User owner, Comment comment, String content, Instant createdAt) {
         this.content = content;
         this.createdAt = createdAt;
     }
 
-    public ReplyCommentPK getId() {
+    public UUID getId() {
         return id;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public Comment getComment() {
+        return comment;
     }
 
     public String getContent() {
@@ -35,6 +57,18 @@ public class ReplyComment implements Serializable {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
     }
 
     public void setContent(String content) {

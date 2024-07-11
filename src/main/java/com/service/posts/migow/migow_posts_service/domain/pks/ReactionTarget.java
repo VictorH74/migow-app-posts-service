@@ -5,13 +5,13 @@ import java.util.UUID;
 
 public class ReactionTarget {
     private UUID postId;
-    private CommentPK commentId;
+    private UUID commentId;
 
     public UUID getPostId() {
         return postId;
     }
 
-    public CommentPK getCommentId() {
+    public UUID getCommentId() {
         return commentId;
     }
 
@@ -19,7 +19,7 @@ public class ReactionTarget {
         this.postId = postId;
     }
 
-    public void setCommentId(CommentPK commentId) {
+    public void setCommentId(UUID commentId) {
         this.commentId = commentId;
     }
 

@@ -1,35 +1,35 @@
 package com.service.posts.migow.migow_posts_service.domain.entities;
 
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-import com.service.posts.migow.migow_posts_service.domain.pks.SharedPostPK;
+import com.service.posts.migow.migow_posts_service.domain.pks.FollowerPK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="shared_posts")
-public class SharedPost implements Serializable {
+@Table(name = "followers")
+public class Follower {
     @EmbeddedId
-    final private SharedPostPK id = new SharedPostPK();
+    private FollowerPK id;
     private Instant createdAt;
 
-    public SharedPost() {
+    public Follower() {
+        this.createdAt = Instant.now();
     }
 
-    public SharedPost(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public SharedPostPK getId() {
+    public FollowerPK getId() {
         return id;
     }
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public void setId(FollowerPK id) {
+        this.id = id;
     }
 
     public void setCreatedAt(Instant createdAt) {
@@ -49,7 +49,7 @@ public class SharedPost implements Serializable {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        SharedPost other = (SharedPost) obj;
+        Follower other = (Follower) obj;
         return Objects.equals(id, other.id);
     }
 

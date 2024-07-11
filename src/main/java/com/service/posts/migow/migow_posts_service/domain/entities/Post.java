@@ -16,7 +16,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "db_post")
+@Table(name = "posts")
 public class Post implements  Serializable {
     @Id
     @GeneratedValue(generator = "UUID")

@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "db_media")
+@Table(name = "medias")
 public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
