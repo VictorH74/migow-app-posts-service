@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.PostRepository;
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.posts.UpdatePostByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
+import com.service.posts.migow.migow_posts_service.infra.http.dtos.posts.UpdatePostDTO;
 
 @Component
 public class UpdatePostById implements UpdatePostByIdUseCase {
@@ -17,9 +18,17 @@ public class UpdatePostById implements UpdatePostByIdUseCase {
     }
 
     @Override
-    public Post execute(UUID id, Post obj) {
-        // TODO impl not fount post
-        return postRepository.updatePostById(id, obj);
+    public Post execute(UUID id, UpdatePostDTO obj) {
+        Post post = new Post();
+        post.setId(id);
+
+        if (!obj.getText().isBlank())
+            post.setText(obj.getText());
+
+        if (!obj.getMediaList().isEmpty())
+            post.setMediaList(obj.getMediaList());
+
+        return postRepository.createUpdatePost(post);
     }
 
 }

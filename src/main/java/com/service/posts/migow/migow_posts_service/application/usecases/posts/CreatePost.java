@@ -16,6 +16,6 @@ public class CreatePost implements CreatePostUseCase {
 
     @Override
     public Post execute(Post obj) {
-        return postRepository.createPost(obj);
+        return postRepository.createUpdatePost(obj);
     }
 }

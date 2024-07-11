@@ -5,8 +5,8 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.service.posts.migow.migow_posts_service.infra.http.dtos.PostDTO;
+import com.service.posts.migow.migow_posts_service.infra.http.dtos.posts.PostResponseDTO;
 
 public interface GetAllPostByUserIdUseCase {
-    Page<PostDTO> execute(UUID userId, Pageable pageable);
+    Page<PostResponseDTO> execute(UUID userId, Pageable pageable);
 }

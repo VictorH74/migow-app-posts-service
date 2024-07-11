@@ -1,10 +1,11 @@
 package com.service.posts.migow.migow_posts_service.application.usecases.comments;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.DeleteCommentByIdUseCase;
-import com.service.posts.migow.migow_posts_service.domain.pks.CommentPK;
 
 @Component
 public class DeleteCommentById implements DeleteCommentByIdUseCase {
@@ -15,7 +16,7 @@ public class DeleteCommentById implements DeleteCommentByIdUseCase {
     }
 
     @Override
-    public void execute(CommentPK id) {
+    public void execute(UUID id) {
         commentRepository.deleteCommentById(id);
     }
 

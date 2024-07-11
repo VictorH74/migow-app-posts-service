@@ -1,11 +1,13 @@
 package com.service.posts.migow.migow_posts_service.application.usecases.comments;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Component;
 
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.UpdateCommentByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
-import com.service.posts.migow.migow_posts_service.domain.pks.CommentPK;
+import com.service.posts.migow.migow_posts_service.infra.http.dtos.comments.UpdateCommentDTO;
 
 @Component
 public class UpdateCommentById implements UpdateCommentByIdUseCase {
@@ -17,8 +19,14 @@ public class UpdateCommentById implements UpdateCommentByIdUseCase {
     }
 
     @Override
-    public Comment execute(CommentPK id, Comment obj) {
-        return commentRepository.updateCommentById(id, obj);
+    public Comment execute(UUID id, UpdateCommentDTO obj) {
+        Comment comment = new Comment();
+        comment.setId(id);
+
+        if (!obj.getContent().isBlank())
+            comment.setContent(obj.getContent());
+
+        return commentRepository.createUpdateComment(comment);
     }
 
 }

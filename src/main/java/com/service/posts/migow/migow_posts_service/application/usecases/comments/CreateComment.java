@@ -17,7 +17,7 @@ public class CreateComment implements CreateCommentUseCase {
 
     @Override
     public Comment execute(Comment obj) {
-        return commentRepository.createComment(obj);
+        return commentRepository.createUpdateComment(obj);
     }
 
 }

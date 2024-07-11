@@ -4,5 +4,4 @@ import java.util.UUID;
 
 public interface GetCommentCountByPostIdUseCase {
     Long execute(UUID postId);
-
 }
