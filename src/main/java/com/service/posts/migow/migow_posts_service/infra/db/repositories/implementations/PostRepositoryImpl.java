@@ -1,5 +1,6 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.implementations;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,13 +22,23 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Post createPost(Post obj) {
+    public Post createUpdatePost(Post obj) {
         return jpaPostRepository.save(obj);
+    }
+
+    @Override
+    public List<Post> createManyPost(List<Post> objs) {
+        return jpaPostRepository.saveAll(objs);
     }
 
     @Override
     public Page<Post> getAllPostByUserId(UUID userId, Pageable pageable) {
         return jpaPostRepository.findAllByUserId(userId, pageable);
+    }
+
+    @Override
+    public Page<Post> getAllFollowedUserPost(UUID followerId, Pageable pageable) {
+        return jpaPostRepository.findAllFollowedUserPost(followerId, pageable);
     }
 
     @Override
@@ -39,12 +50,6 @@ public class PostRepositoryImpl implements PostRepository {
     public void deletePostById(UUID id) {
         jpaPostRepository.deleteById(id);
 
-    }
-
-    @Override
-    public Post updatePostById(UUID id, Post obj) {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }

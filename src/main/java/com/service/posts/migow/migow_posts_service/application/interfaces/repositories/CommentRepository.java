@@ -1,22 +1,21 @@
 package com.service.posts.migow.migow_posts_service.application.interfaces.repositories;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
-import com.service.posts.migow.migow_posts_service.domain.pks.CommentPK;
 
 public interface CommentRepository {
     Page<Comment> getAllCommentByPostId(UUID postId, Pageable pageable);
 
+    List<Comment> createManyComment(List<Comment> objs);
+
+    Comment createUpdateComment(Comment obj);
+
     Long getCommentCountByPostId(UUID postId);
 
-    Comment createComment(Comment obj);
-
-    void deleteCommentById(CommentPK id);
-
-    Comment updateCommentById(CommentPK id, Comment obj);
-
+    void deleteCommentById(UUID id);
 }

@@ -1,5 +1,6 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.implementations;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
-import com.service.posts.migow.migow_posts_service.domain.pks.CommentPK;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaCommentRepository;
 
 @Repository
@@ -25,12 +25,17 @@ public class CommentRepositoryImpl implements CommentRepository {
     }
 
     @Override
-    public Comment createComment(Comment obj) {
+    public List<Comment> createManyComment(List<Comment> objs) {
+        return jpaCommentRepository.saveAll(objs);
+    }
+
+    @Override
+    public Comment createUpdateComment(Comment obj) {
         return jpaCommentRepository.save(obj);
     }
 
     @Override
-    public void deleteCommentById(CommentPK id) {
+    public void deleteCommentById(UUID id) {
         jpaCommentRepository.deleteById(id);
 
     }
@@ -38,12 +43,6 @@ public class CommentRepositoryImpl implements CommentRepository {
     @Override
     public Long getCommentCountByPostId(UUID postId) {
         return jpaCommentRepository.countByPostId(postId);
-    }
-
-    @Override
-    public Comment updateCommentById(CommentPK id, Comment obj) {
-        // TODO Auto-generated method stub
-        return null;
     }
 
 }

@@ -13,4 +13,6 @@ public interface JpaPostRepository extends JpaRepository<Post, UUID> {
     @Query("SELECT p FROM Post p WHERE p.owner.id = :userId")
     public Page<Post> findAllByUserId(UUID userId, Pageable pageable);
 
+    @Query("SELECT p FROM Post p JOIN Follower f ON p.owner.id = f.id.followedUser.id WHERE f.id.followerUser.id = :followerId ORDER BY p.createdAt DESC")
+    public Page<Post> findAllFollowedUserPost(UUID followerId, Pageable pageable);
 }

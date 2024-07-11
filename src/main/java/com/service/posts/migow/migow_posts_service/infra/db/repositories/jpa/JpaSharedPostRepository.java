@@ -11,7 +11,7 @@ import com.service.posts.migow.migow_posts_service.domain.pks.SharedPostPK;
 public interface JpaSharedPostRepository
                 extends JpaRepository<SharedPost, SharedPostPK> {
 
-        @Query("SELECT COUNT(p) FROM PostShareActivityRecord p WHERE p.id.post.id = :postId")
+        @Query("SELECT COUNT(p) FROM SharedPost p WHERE p.id.post.id = :postId")
         long countByPostId(UUID postId);
 
 }

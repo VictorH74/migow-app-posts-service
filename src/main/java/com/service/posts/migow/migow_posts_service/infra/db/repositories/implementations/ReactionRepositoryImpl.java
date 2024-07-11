@@ -1,7 +1,10 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.implementations;
 
+import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReactionRepository;
@@ -11,35 +14,36 @@ import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.Jpa
 @Repository
 public class ReactionRepositoryImpl implements ReactionRepository {
 
-    private final JpaReactionRepository JpaReactionRepository;
+    private final JpaReactionRepository jpaReactionRepository;
 
-    public ReactionRepositoryImpl(
-            com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaReactionRepository jpaReactionRepository) {
-        JpaReactionRepository = jpaReactionRepository;
+    public ReactionRepositoryImpl(JpaReactionRepository jpaReactionRepository) {
+        this.jpaReactionRepository = jpaReactionRepository;
     }
 
     @Override
-    public Reaction createReaction(Reaction obj) {
-        // TODO Auto-generated method stub
-        return null;
+    public Reaction createUpdateReaction(Reaction obj) {
+        return jpaReactionRepository.save(obj);
     }
 
     @Override
     public void deleteReactionById(UUID id) {
-        // TODO Auto-generated method stub
+        jpaReactionRepository.deleteById(id);
 
     }
 
     @Override
-    public Long getReactionCoundByPostId(UUID postId) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Reaction> createManyReaction(List<Reaction> objs) {
+        return jpaReactionRepository.saveAll(objs);
     }
 
     @Override
-    public Reaction updateReaction(UUID id, Reaction obj) {
-        // TODO Auto-generated method stub
-        return null;
+    public Page<Reaction> getAllReactionByTarget(String target, Pageable pageable) {
+        return jpaReactionRepository.findAllByTarget(target, pageable);
+    }
+
+    @Override
+    public Long getReactionCountByTarget(String target) {
+        return jpaReactionRepository.countByTarget(target);
     }
 
 }

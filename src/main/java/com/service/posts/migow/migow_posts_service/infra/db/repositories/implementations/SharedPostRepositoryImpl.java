@@ -29,8 +29,7 @@ public class SharedPostRepositoryImpl implements SharedPostRepository {
 
     @Override
     public Long getSharedPostCountByPostId(UUID postId) {
-        // TODO Auto-generated method stub
-        return null;
+        return jpaSharedPostRepository.countByPostId(postId);
     }
 
 }
