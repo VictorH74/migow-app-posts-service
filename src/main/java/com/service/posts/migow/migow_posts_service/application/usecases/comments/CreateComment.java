@@ -2,9 +2,9 @@ package com.service.posts.migow.migow_posts_service.application.usecases.comment
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.CommentRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.CreateCommentUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.CreateCommentUseCase;
 
 @Component
 public class CreateComment implements CreateCommentUseCase {

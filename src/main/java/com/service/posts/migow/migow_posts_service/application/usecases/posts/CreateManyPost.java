@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.PostRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.posts.CreateManyPostUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.PostRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.posts.CreateManyPostUseCase;
 
 @Component
 public class CreateManyPost implements CreateManyPostUseCase {

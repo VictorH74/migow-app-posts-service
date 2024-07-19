@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Repository;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.SharedPostRepository;
 import com.service.posts.migow.migow_posts_service.domain.entities.SharedPost;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.SharedPostRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaSharedPostRepository;
 
 @Repository

@@ -4,11 +4,11 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReactionRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reactions.GetReactionCountByTargetIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetReactionCountByTargetIdUseCase;
 
 @Component
 public class GetReactionCountByTargetId implements GetReactionCountByTargetIdUseCase {

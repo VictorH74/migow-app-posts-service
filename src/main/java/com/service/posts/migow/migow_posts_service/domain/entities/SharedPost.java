@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-import com.service.posts.migow.migow_posts_service.domain.pks.SharedPostPK;
+import com.service.posts.migow.migow_posts_service.domain.entities.pks.SharedPostPK;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;

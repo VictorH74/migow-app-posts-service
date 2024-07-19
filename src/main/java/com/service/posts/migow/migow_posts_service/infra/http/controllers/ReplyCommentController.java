@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reply_comments.CreateReplyCommentUseCase;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reply_comments.GetAllReplyCommentByCommentIdUseCase;
+import com.service.posts.migow.migow_posts_service.application.dtos.reply_comments.CreateReplyCommentRequestDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
-import com.service.posts.migow.migow_posts_service.infra.http.dtos.reply_comments.CreateReplyCommentRequestDTO;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.CreateReplyCommentUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.GetAllReplyCommentByCommentIdUseCase;
 
 @RestController
 @RequestMapping("reply-comments")

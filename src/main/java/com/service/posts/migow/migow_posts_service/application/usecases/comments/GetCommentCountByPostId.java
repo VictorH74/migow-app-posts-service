@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.CommentRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.GetCommentCountByPostIdUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.GetCommentCountByPostIdUseCase;
 
 @Component
 public class GetCommentCountByPostId implements GetCommentCountByPostIdUseCase {

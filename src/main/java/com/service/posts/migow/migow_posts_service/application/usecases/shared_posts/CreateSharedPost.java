@@ -2,9 +2,9 @@ package com.service.posts.migow.migow_posts_service.application.usecases.shared_
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.SharedPostRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.shared_posts.CreateSharedPostUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.SharedPost;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.SharedPostRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.shared_posts.CreateSharedPostUseCase;
 
 @Component
 public class CreateSharedPost implements CreateSharedPostUseCase {

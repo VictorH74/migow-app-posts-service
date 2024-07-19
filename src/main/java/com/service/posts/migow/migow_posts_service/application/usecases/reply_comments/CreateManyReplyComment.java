@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReplyCommentRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reply_comments.CreateManyReplyCommentUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReplyCommentRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.CreateManyReplyCommentUseCase;
 
 @Component
 public class CreateManyReplyComment implements CreateManyReplyCommentUseCase {

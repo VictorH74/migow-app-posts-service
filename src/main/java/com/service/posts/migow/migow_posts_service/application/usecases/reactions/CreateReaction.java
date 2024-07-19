@@ -4,14 +4,14 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReactionRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reactions.CreateReactionUseCase;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.CreateReactionDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
-import com.service.posts.migow.migow_posts_service.infra.http.dtos.reactions.CreateReactionDTO;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.CreateReactionUseCase;
 
 @Component
 public class CreateReaction implements CreateReactionUseCase {

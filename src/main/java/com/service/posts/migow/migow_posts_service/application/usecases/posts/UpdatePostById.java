@@ -4,10 +4,10 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.PostRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.posts.UpdatePostByIdUseCase;
+import com.service.posts.migow.migow_posts_service.application.dtos.posts.UpdatePostDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
-import com.service.posts.migow.migow_posts_service.infra.http.dtos.posts.UpdatePostDTO;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.PostRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.posts.UpdatePostByIdUseCase;
 
 @Component
 public class UpdatePostById implements UpdatePostByIdUseCase {

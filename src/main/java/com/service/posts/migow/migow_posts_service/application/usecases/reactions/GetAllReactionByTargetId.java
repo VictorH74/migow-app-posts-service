@@ -5,12 +5,12 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReactionRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reactions.GetAllReactionByTargetIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllReactionByTargetIdUseCase;
 
 public class GetAllReactionByTargetId implements GetAllReactionByTargetIdUseCase {
     private final ReactionRepository reactionRepository;

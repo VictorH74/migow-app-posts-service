@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.CreateCommentUseCase;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.GetAllCommentByPostIdUseCase;
+import com.service.posts.migow.migow_posts_service.application.dtos.comments.CommentResponseDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.CreateCommentUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.GetAllCommentByPostIdUseCase;
 
 @RestController
 @RequestMapping("comments")
@@ -33,7 +34,7 @@ public class CommentController {
     }
 
     @GetMapping("/{postId}")
-    public Page<Comment> getCommentByPostId(
+    public Page<CommentResponseDTO> getAllPostComment(
             @PathVariable UUID postId,
             @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {

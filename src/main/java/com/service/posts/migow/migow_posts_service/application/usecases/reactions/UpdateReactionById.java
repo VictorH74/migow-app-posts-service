@@ -4,11 +4,11 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReactionRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reactions.UpdateReactionByIdUseCase;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.UpdateReactionDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
-import com.service.posts.migow.migow_posts_service.infra.http.dtos.reactions.UpdateReactionDTO;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.UpdateReactionByIdUseCase;
 
 @Component
 public class UpdateReactionById implements UpdateReactionByIdUseCase {

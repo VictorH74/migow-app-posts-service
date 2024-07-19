@@ -1,14 +1,13 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.implementations;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaReactionRepository;
 
 @Repository
@@ -29,11 +28,6 @@ public class ReactionRepositoryImpl implements ReactionRepository {
     public void deleteReactionById(UUID id) {
         jpaReactionRepository.deleteById(id);
 
-    }
-
-    @Override
-    public List<Reaction> createManyReaction(List<Reaction> objs) {
-        return jpaReactionRepository.saveAll(objs);
     }
 
     @Override

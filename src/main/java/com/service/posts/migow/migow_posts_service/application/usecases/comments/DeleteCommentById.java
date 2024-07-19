@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.CommentRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.comments.DeleteCommentByIdUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.DeleteCommentByIdUseCase;
 
 @Component
 public class DeleteCommentById implements DeleteCommentByIdUseCase {

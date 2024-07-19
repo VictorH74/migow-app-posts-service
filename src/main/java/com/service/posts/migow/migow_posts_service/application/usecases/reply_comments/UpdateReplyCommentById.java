@@ -4,10 +4,10 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.ReplyCommentRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.reply_comments.UpdateReplyCommentByIdUseCase;
+import com.service.posts.migow.migow_posts_service.application.dtos.reply_comments.UpdateReplyCommentDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
-import com.service.posts.migow.migow_posts_service.infra.http.dtos.reply_comments.UpdateReplyCommentDTO;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReplyCommentRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.UpdateReplyCommentByIdUseCase;
 
 @Component
 public class UpdateReplyCommentById implements UpdateReplyCommentByIdUseCase {

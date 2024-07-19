@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.service.posts.migow.migow_posts_service.domain.entities.SharedPost;
-import com.service.posts.migow.migow_posts_service.domain.pks.SharedPostPK;
+import com.service.posts.migow.migow_posts_service.domain.entities.pks.SharedPostPK;
 
 public interface JpaSharedPostRepository
                 extends JpaRepository<SharedPost, SharedPostPK> {

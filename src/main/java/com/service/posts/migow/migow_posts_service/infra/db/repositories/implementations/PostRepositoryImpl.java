@@ -8,8 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.PostRepository;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.PostRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaPostRepository;
 
 @Repository
@@ -37,8 +37,13 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Page<Post> getAllFollowedUserPost(UUID followerId, Pageable pageable) {
-        return jpaPostRepository.findAllFollowedUserPost(followerId, pageable);
+    public Page<Post> getAllFriendRecentPost(UUID userId, Pageable pageable) {
+        return jpaPostRepository.findAllFriendRecentPost(userId, pageable);
+    }
+
+    @Override
+    public Page<Post> getAllFriendPopularPost(UUID userId, Pageable pageable) {
+        return jpaPostRepository.findAllFriendPopularPost(userId, pageable);
     }
 
     @Override

@@ -8,8 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.UserRepository;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.UserRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaUserRepository;
 
 @Repository

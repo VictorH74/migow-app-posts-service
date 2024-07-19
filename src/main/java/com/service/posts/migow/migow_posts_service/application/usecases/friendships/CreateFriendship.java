@@ -1,0 +1,37 @@
+package com.service.posts.migow.migow_posts_service.application.usecases.friendships;
+
+import java.util.UUID;
+
+import org.springframework.stereotype.Component;
+
+import com.service.posts.migow.migow_posts_service.domain.entities.Friendship;
+import com.service.posts.migow.migow_posts_service.domain.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.entities.pks.FriendshipPK;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.FriendshipRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.friendships.CreateFriendshipUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.GetUserByIdUseCase;
+
+@Component
+public class CreateFriendship implements CreateFriendshipUseCase {
+
+    private final FriendshipRepository friendshipRepository;
+    private final GetUserByIdUseCase getUserByIdUseCase;
+
+    public CreateFriendship(FriendshipRepository friendshipRepository, GetUserByIdUseCase getUserByIdUseCase) {
+        this.friendshipRepository = friendshipRepository;
+        this.getUserByIdUseCase = getUserByIdUseCase;
+    }
+
+    @Override
+    public Friendship execute(UUID userId, UUID userId2) {
+        FriendshipPK friendshipPK = new FriendshipPK();
+        User user = getUserByIdUseCase.execute(userId);
+        User friendUser = getUserByIdUseCase.execute(userId2);
+        friendshipPK.setUser(user);
+        friendshipPK.setFriendUser(friendUser);
+        Friendship f = new Friendship();
+        f.setId(friendshipPK);
+        return friendshipRepository.createFriendship(f);
+    }
+
+}

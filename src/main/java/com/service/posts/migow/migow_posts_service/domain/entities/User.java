@@ -1,7 +1,6 @@
 package com.service.posts.migow.migow_posts_service.domain.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -25,26 +24,14 @@ public class User implements Serializable {
     @Email(message = "Invalid email")
     private String email;
 
-    final private Instant createdAt;
-
     public User(UUID id, String username, String name, String email) {
         this.id = id;
         this.username = username;
         this.name = name;
         this.email = email;
-        this.createdAt = Instant.now();
-    }
-
-    public User(UUID id, String username, String name, String email, Instant createdAt) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.email = email;
-        this.createdAt = createdAt;
     }
 
     public User() {
-        this.createdAt = Instant.now();
     }
 
     public UUID getId() {
@@ -61,10 +48,6 @@ public class User implements Serializable {
 
     public String getEmail() {
         return email;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
     }
 
     public void setId(UUID id) {

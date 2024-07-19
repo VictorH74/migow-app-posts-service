@@ -4,9 +4,9 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.repositories.UserRepository;
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.users.CreateUpdateUserUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.UserRepository;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.CreateUpdateUserUseCase;
 
 @Component
 public class CreateUpdateUser implements CreateUpdateUserUseCase {

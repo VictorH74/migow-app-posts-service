@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service.posts.migow.migow_posts_service.application.interfaces.usecases.users.GetAllUserUseCase;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.GetAllUserUseCase;
 
 
 @RestController
@@ -22,7 +22,7 @@ public class UserController {
         this.getAllUserUseCase = getAllUserUseCase;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public Page<User> getUsers(@RequestParam(defaultValue = "0", name = "pageNumber") int pageNumber,
             @RequestParam(defaultValue = "10", name = "pageSize") int pageSize) {
 
