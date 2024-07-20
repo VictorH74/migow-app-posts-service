@@ -1,12 +1,15 @@
 package com.service.posts.migow.migow_posts_service.domain.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
@@ -22,70 +25,28 @@ public class User implements Serializable {
     @Id
     private UUID id;
     @Column(name = "username", nullable = false, length = 25)
+    @NonNull
     private String username;
+    @Column(name = "password", nullable = false, length = 25)
+    @NonNull
+    private String password;
     @Column(name = "name", nullable = false, length = 50)
+    @NonNull
     private String name;
     @Column(name = "email", nullable = false, length = 50)
     @Email(message = "Invalid email")
+    @NonNull
     private String email;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<UserRole> roles = new HashSet<>();
 
-    public User(UUID id, String username, String name, String email) {
+    public User(UUID id, @NonNull String username, @NonNull String password, @NonNull String name,
+            @Email(message = "Invalid email") @NonNull String email) {
         this.id = id;
         this.username = username;
+        this.password = password;
         this.name = name;
         this.email = email;
-    }
-
-    public User() {
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        User other = (User) obj;
-        return Objects.equals(id, other.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
 }

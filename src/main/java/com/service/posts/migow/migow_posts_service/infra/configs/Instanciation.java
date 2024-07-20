@@ -43,33 +43,33 @@ public class Instanciation implements CommandLineRunner {
         public void run(String... args) throws Exception {
                 User[] users = new User[] {
                                 new User(UUID.fromString("fc7dc70e-067b-414d-8a9d-35a2bb5c8736"), "vyctor7410",
-                                                "Victor Almeida", "victor@gmail.com"),
+                                                "123456789", "Victor Almeida", "victor@gmail.com"),
                                 new User(UUID.fromString("9bca54b4-6cfe-4f76-8a11-def9c829e627"), "nickT_776",
-                                                "Nikolas Tesla", "nick@gmail.com"),
+                                                "123456789", "Nikolas Tesla", "nick@gmail.com"),
                                 new User(UUID.fromString("90f7c337-cc45-4af6-82df-13a7c8cad090"), "mary-988",
-                                                "Marina Silva", "mari@gmail.com"),
+                                                "123456789", "Marina Silva", "mari@gmail.com"),
                                 new User(UUID.fromString("d3ead047-ac78-4c2e-b6f4-dd3e306b58bb"), "jeorge421",
-                                                "Jeorge Borges",
+                                                "123456789", "Jeorge Borges",
                                                 "j.borges@gmail.com"),
                                 new User(UUID.fromString("7198b869-bf2e-4f73-bb31-981961b3bd5c"), "gabby_sousa78",
-                                                "Gabrielly Sousa",
+                                                "123456789", "Gabrielly Sousa",
                                                 "gabbs@gmail.com"),
                                 new User(UUID.fromString("e8ba5172-a8a6-4298-80a4-dab22029b951"), "joice_p@98",
-                                                "Joice Pereira", "joy@gmail.com"),
+                                                "123456789", "Joice Pereira", "joy@gmail.com"),
                                 new User(UUID.fromString("94191aca-bc3e-45e8-845b-e5df73957f48"), "Gvana123",
-                                                "Geovana Bragas",
+                                                "123456789", "Geovana Bragas",
                                                 "g-bragas@gmail.com"),
                                 new User(UUID.fromString("1e0a91e8-cc47-4e3b-acb7-31b1349257a9"), "math#Silva",
-                                                "Matheus Silva",
+                                                "123456789", "Matheus Silva",
                                                 "math@gmail.com"),
                                 new User(UUID.fromString("b68180aa-d790-4a17-85bc-972cd2644655"), "Lidia123",
-                                                "Lidia Nogueira",
+                                                "123456789", "Lidia Nogueira",
                                                 "lidia@gmail.com"),
                                 new User(UUID.fromString("32ec771a-f70c-4b13-a231-234b32fc2fee"), "karlos7999",
-                                                "Karlos Almendra",
+                                                "123456789", "Karlos Almendra",
                                                 "karlos@gmail.com"),
                                 new User(UUID.fromString("9dfdb019-59f1-4742-beec-cf03054178c5"), "nicolinha578",
-                                                "Nicole Dias",
+                                                "123456789", "Nicole Dias",
                                                 "nic-dias@gmail.com"),
                 };
 
@@ -100,19 +100,19 @@ public class Instanciation implements CommandLineRunner {
                 createManyFriendshipUseCase.execute(friendships);
 
                 Post post1 = new Post();
-                post1.setowner(savedUsers.get(0));
+                post1.setOwner(savedUsers.get(0));
                 post1.setText("✨my post to testing✨");
 
                 Post post2 = new Post();
-                post2.setowner(savedUsers.get(2));
+                post2.setOwner(savedUsers.get(2));
                 post2.setText("hello guysss!! 😁😁😁🚀");
 
                 Post post3 = new Post();
-                post3.setowner(savedUsers.get(5));
+                post3.setOwner(savedUsers.get(5));
                 post3.setText("Welcome to the django!!");
 
                 Post post4 = new Post();
-                post4.setowner(savedUsers.get(7));
+                post4.setOwner(savedUsers.get(7));
                 post4.setText("Ples share my post 🙏");
 
                 List<Post> posts = new ArrayList<>();
