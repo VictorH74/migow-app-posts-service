@@ -12,13 +12,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.User;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.UserRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaUserRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Repository
 public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaUserRepository;
-
-    public UserRepositoryImpl(JpaUserRepository jpaUserRepository) {
-        this.jpaUserRepository = jpaUserRepository;
-    }
 
     @Override
     public Page<User> getAllUser(Pageable pageable) {

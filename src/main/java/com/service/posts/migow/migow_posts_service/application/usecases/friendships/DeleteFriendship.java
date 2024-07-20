@@ -10,16 +10,14 @@ import com.service.posts.migow.migow_posts_service.domain.interfaces.repositorie
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.friendships.DeleteFriendshipUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.GetUserByIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class DeleteFriendship implements DeleteFriendshipUseCase {
 
     private final FriendshipRepository friendshipRepository;
     private final GetUserByIdUseCase getUserByIdUseCase;
-
-    public DeleteFriendship(FriendshipRepository friendshipRepository, GetUserByIdUseCase getUserByIdUseCase) {
-        this.friendshipRepository = friendshipRepository;
-        this.getUserByIdUseCase = getUserByIdUseCase;
-    }
 
     @Override
     public void execute(UUID userId, UUID userId2) {

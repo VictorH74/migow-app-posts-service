@@ -20,18 +20,15 @@ import com.service.posts.migow.migow_posts_service.domain.entities.User;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.CreateReplyCommentUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.GetAllReplyCommentByCommentIdUseCase;
 
+import lombok.AllArgsConstructor;
+
 @RestController
 @RequestMapping("reply-comments")
+@AllArgsConstructor
 public class ReplyCommentController {
 
     private final GetAllReplyCommentByCommentIdUseCase getAllReplyCommentByCommentIdUseCase;
     private final CreateReplyCommentUseCase createReplyCommentUseCase;
-
-    public ReplyCommentController(GetAllReplyCommentByCommentIdUseCase getAllReplyCommentByCommentIdUseCase,
-            CreateReplyCommentUseCase createReplyCommentUseCase) {
-        this.getAllReplyCommentByCommentIdUseCase = getAllReplyCommentByCommentIdUseCase;
-        this.createReplyCommentUseCase = createReplyCommentUseCase;
-    }
 
     @GetMapping("/{commentId}")
     public Page<ReplyComment> getReplyCommentByCommentId(

@@ -13,9 +13,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "reply_comments")
+@Getter
+@Setter
+@AllArgsConstructor
 public class ReplyComment implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,51 +38,6 @@ public class ReplyComment implements Serializable {
 
     public ReplyComment() {
         this.createdAt = Instant.now();
-    }
-
-    public ReplyComment(UUID id, User owner, Comment comment, String content, Instant createdAt) {
-        this.content = content;
-        this.createdAt = createdAt;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public Comment getComment() {
-        return comment;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public void setComment(Comment comment) {
-        this.comment = comment;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
     }
 
     @Override

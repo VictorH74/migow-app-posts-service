@@ -12,18 +12,15 @@ import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.co
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetReactionCountByTargetIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.GetReplyCommentCountByCommentIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetAllCommentByPostId implements GetAllCommentByPostIdUseCase {
 
     private final CommentRepository commentRepository;
     private final GetReactionCountByTargetIdUseCase getReactionCountByTargetIdUseCase;
     private final GetReplyCommentCountByCommentIdUseCase getReplyCommentCountByCommentIdUseCase;
-
-    public GetAllCommentByPostId(CommentRepository commentRepository, GetReactionCountByTargetIdUseCase getReactionCountByTargetIdUseCase, GetReplyCommentCountByCommentIdUseCase getReplyCommentCountByCommentIdUseCase) {
-        this.commentRepository = commentRepository;
-        this.getReactionCountByTargetIdUseCase = getReactionCountByTargetIdUseCase;
-        this.getReplyCommentCountByCommentIdUseCase = getReplyCommentCountByCommentIdUseCase;
-    }
 
     @Override
     public Page<CommentResponseDTO> execute(UUID postId, Pageable pageable) {

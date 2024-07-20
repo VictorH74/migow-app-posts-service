@@ -9,13 +9,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.PostRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.posts.UpdatePostByIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class UpdatePostById implements UpdatePostByIdUseCase {
     private final PostRepository postRepository;
-
-    public UpdatePostById(PostRepository postRepository) {
-        this.postRepository = postRepository;
-    }
 
     @Override
     public Post execute(UUID id, UpdatePostDTO obj) {

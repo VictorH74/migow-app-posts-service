@@ -9,9 +9,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Entity
 @Table(name = "users")
+@Data
+@NoArgsConstructor
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

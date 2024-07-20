@@ -13,6 +13,9 @@ import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.po
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetReactionCountByTargetIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.shared_posts.GetSharedPostCountByPostIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetAllRecentFriendPost implements GetAllRecentFriendPostUseCase {
     private final PostRepository postRepository;
@@ -20,16 +23,6 @@ public class GetAllRecentFriendPost implements GetAllRecentFriendPostUseCase {
     private final GetReactionCountByTargetIdUseCase getReactionCountByTargetIdUseCase;
     private final GetCommentCountByPostIdUseCase getCommentCountByPostIdUseCase;
     private final GetSharedPostCountByPostIdUseCase getSharedPostCountByPostIdUseCase;
-
-    public GetAllRecentFriendPost(PostRepository postRepository,
-            GetReactionCountByTargetIdUseCase getReactionCountByTargetIdUseCase,
-            GetCommentCountByPostIdUseCase getCommentCountByPostIdUseCase,
-            GetSharedPostCountByPostIdUseCase getSharedPostCountByPostIdUseCase) {
-        this.postRepository = postRepository;
-        this.getReactionCountByTargetIdUseCase = getReactionCountByTargetIdUseCase;
-        this.getCommentCountByPostIdUseCase = getCommentCountByPostIdUseCase;
-        this.getSharedPostCountByPostIdUseCase = getSharedPostCountByPostIdUseCase;
-    }
 
     @Override
     public Page<PostResponseDTO> execute(UUID userId, Pageable pageable) {

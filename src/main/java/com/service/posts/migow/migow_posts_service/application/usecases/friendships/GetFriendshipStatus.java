@@ -8,16 +8,14 @@ import com.service.posts.migow.migow_posts_service.domain.interfaces.repositorie
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.friendships.GetFriendshipStatusUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.GetUserByIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetFriendshipStatus implements GetFriendshipStatusUseCase {
 
     private final FriendshipRepository friendshipRepository;
     private final GetUserByIdUseCase getUserByIdUseCase;
-
-    public GetFriendshipStatus(FriendshipRepository friendshipRepository, GetUserByIdUseCase getUserByIdUseCase) {
-        this.friendshipRepository = friendshipRepository;
-        this.getUserByIdUseCase = getUserByIdUseCase;
-    }
 
     @Override
     public boolean execute(UUID userId, UUID userId2) {

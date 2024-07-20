@@ -12,9 +12,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "comments")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Comment implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -31,54 +37,6 @@ public class Comment implements Serializable {
 
     public Comment() {
         this.createdAt = Instant.now();
-    }
-
-    public Comment(UUID id, User owner, Post post, String content, Instant createdAt) {
-        this.id = id;
-        this.owner = owner;
-        this.post = post;
-        this.content = content;
-        this.createdAt = createdAt;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public Post getPost() {
-        return post;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
     }
 
     @Override

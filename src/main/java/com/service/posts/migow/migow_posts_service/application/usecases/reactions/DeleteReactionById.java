@@ -7,13 +7,12 @@ import org.springframework.stereotype.Component;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.DeleteReactionByIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class DeleteReactionById implements DeleteReactionByIdUseCase {
     private final ReactionRepository reactionRepository;
-
-    public DeleteReactionById(ReactionRepository reactionRepository) {
-        this.reactionRepository = reactionRepository;
-    }
 
     @Override
     public void execute(UUID id) {

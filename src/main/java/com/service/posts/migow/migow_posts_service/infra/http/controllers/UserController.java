@@ -11,16 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.GetAllUserUseCase;
 
+import lombok.AllArgsConstructor;
+
 
 @RestController
 @RequestMapping("/users")
+@AllArgsConstructor
 public class UserController {
 
     private final GetAllUserUseCase getAllUserUseCase;
-
-    public UserController(GetAllUserUseCase getAllUserUseCase) {
-        this.getAllUserUseCase = getAllUserUseCase;
-    }
 
     @GetMapping
     public Page<User> getUsers(@RequestParam(defaultValue = "0", name = "pageNumber") int pageNumber,

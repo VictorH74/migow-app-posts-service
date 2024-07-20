@@ -1,14 +1,10 @@
 package com.service.posts.migow.migow_posts_service.application.dtos.reactions;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UpdateReactionDTO {
     private int type;
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
 }

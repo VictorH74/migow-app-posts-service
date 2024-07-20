@@ -8,13 +8,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.CreateManyCommentUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class CreateManyComment implements CreateManyCommentUseCase {
     private final CommentRepository commentRepository;
-
-    public CreateManyComment(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
 
     @Override
     public List<Comment> execute(List<Comment> objs) {

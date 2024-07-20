@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Component;
 
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
@@ -12,12 +13,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllReactionByTargetIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+@Component
 public class GetAllReactionByTargetId implements GetAllReactionByTargetIdUseCase {
     private final ReactionRepository reactionRepository;
-
-    public GetAllReactionByTargetId(ReactionRepository reactionRepository) {
-        this.reactionRepository = reactionRepository;
-    }
 
     @Override
     public Page<Reaction> execute(UUID targetId, Class<?> targetClass, Pageable pageable) {

@@ -12,6 +12,9 @@ import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.co
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.posts.GetAllPostByUserIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.shared_posts.GetSharedPostCountByPostIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetAllPostByUserId implements GetAllPostByUserIdUseCase {
 
@@ -19,16 +22,6 @@ public class GetAllPostByUserId implements GetAllPostByUserIdUseCase {
     // private final GetReactionCoundByPostIdUseCase getReactionCoundByPostIdUseCase;
     private final GetCommentCountByPostIdUseCase getCommentCountByPostIdUseCase;
     private final GetSharedPostCountByPostIdUseCase getSharedPostCountByPostIdUseCase;
-
-    public GetAllPostByUserId(PostRepository postRepository,
-            // GetReactionCoundByPostIdUseCase getReactionCoundByPostIdUseCase,
-            GetCommentCountByPostIdUseCase getCommentCountByPostIdUseCase,
-            GetSharedPostCountByPostIdUseCase getSharedPostCountByPostIdUseCase) {
-        this.postRepository = postRepository;
-        // this.getReactionCoundByPostIdUseCase = getReactionCoundByPostIdUseCase;
-        this.getCommentCountByPostIdUseCase = getCommentCountByPostIdUseCase;
-        this.getSharedPostCountByPostIdUseCase = getSharedPostCountByPostIdUseCase;
-    }
 
     @Override
     public Page<PostResponseDTO> execute(UUID userId, Pageable pageable) {

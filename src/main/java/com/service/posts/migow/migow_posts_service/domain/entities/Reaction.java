@@ -10,9 +10,15 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "reactions")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Reaction implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -24,29 +30,6 @@ public class Reaction implements Serializable {
     private User owner;
 
     public Reaction() {
-    }
-
-    public Reaction(UUID id, String target, int type, User owner) {
-        this.id = id;
-        this.target = target;
-        this.type = type;
-        this.owner = owner;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getTarget() {
-        return target;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setTarget(String target) {
-        this.target = target;
     }
 
     @Override

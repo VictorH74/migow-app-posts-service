@@ -8,9 +8,13 @@ import com.service.posts.migow.migow_posts_service.domain.entities.pks.Friendshi
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "friendships")
+@Getter
+@Setter
 public class Friendship {
     @EmbeddedId
     private FriendshipPK id;
@@ -22,18 +26,6 @@ public class Friendship {
 
     public FriendshipPK getId() {
         return id;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setId(FriendshipPK id) {
-        this.id = id;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
     }
 
     @Override

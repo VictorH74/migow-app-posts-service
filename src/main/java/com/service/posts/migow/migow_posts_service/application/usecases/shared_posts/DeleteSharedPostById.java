@@ -7,13 +7,12 @@ import org.springframework.stereotype.Component;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.SharedPostRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.shared_posts.DeleteSharedPostByIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class DeleteSharedPostById implements DeleteSharedPostByIdUseCase {
     private final SharedPostRepository sharedPostRepository;
-
-    public DeleteSharedPostById(SharedPostRepository sharedPostRepository) {
-        this.sharedPostRepository = sharedPostRepository;
-    }
 
     @Override
     public void execute(UUID id) {

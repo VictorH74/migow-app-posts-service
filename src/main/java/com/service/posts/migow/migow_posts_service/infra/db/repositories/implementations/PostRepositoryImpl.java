@@ -12,14 +12,13 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.PostRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaPostRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Repository
 public class PostRepositoryImpl implements PostRepository {
 
     private final JpaPostRepository jpaPostRepository;
-
-    public PostRepositoryImpl(JpaPostRepository jpaPostRepository) {
-        this.jpaPostRepository = jpaPostRepository;
-    }
 
     @Override
     public Post createUpdatePost(Post obj) {

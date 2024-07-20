@@ -10,13 +10,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReplyCommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.GetAllReplyCommentByCommentIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetAllReplyCommentByCommentId implements GetAllReplyCommentByCommentIdUseCase {
     private final ReplyCommentRepository replyCommentRepository;
-
-    public GetAllReplyCommentByCommentId(ReplyCommentRepository replyCommentRepository) {
-        this.replyCommentRepository = replyCommentRepository;
-    }
 
     @Override
     public Page<ReplyComment> execute(UUID commentId, Pageable pageable) {

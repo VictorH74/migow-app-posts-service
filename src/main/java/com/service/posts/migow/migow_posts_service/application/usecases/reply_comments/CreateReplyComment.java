@@ -6,13 +6,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReplyCommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.CreateReplyCommentUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class CreateReplyComment implements CreateReplyCommentUseCase {
     private final ReplyCommentRepository replyCommentRepository;
-
-    public CreateReplyComment(ReplyCommentRepository replyCommentRepository) {
-        this.replyCommentRepository = replyCommentRepository;
-    }
 
     @Override
     public ReplyComment execute(ReplyComment obj) {

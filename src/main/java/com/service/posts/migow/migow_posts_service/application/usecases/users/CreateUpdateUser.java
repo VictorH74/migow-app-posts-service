@@ -8,13 +8,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.User;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.UserRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.CreateUpdateUserUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class CreateUpdateUser implements CreateUpdateUserUseCase {
     private final UserRepository userRepository;
-
-    public CreateUpdateUser(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public User execute(User obj) {

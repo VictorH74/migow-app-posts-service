@@ -6,14 +6,13 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.CreateCommentUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class CreateComment implements CreateCommentUseCase {
 
     private final CommentRepository commentRepository;
-
-    public CreateComment(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
 
     @Override
     public Comment execute(Comment obj) {

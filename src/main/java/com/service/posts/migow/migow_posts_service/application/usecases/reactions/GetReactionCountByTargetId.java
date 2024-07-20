@@ -10,13 +10,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetReactionCountByTargetIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetReactionCountByTargetId implements GetReactionCountByTargetIdUseCase {
     private final ReactionRepository reactionRepository;
-
-    public GetReactionCountByTargetId(ReactionRepository reactionRepository) {
-        this.reactionRepository = reactionRepository;
-    }
 
     @Override
     public Long execute(UUID targetId, Class<?> targetClass) {

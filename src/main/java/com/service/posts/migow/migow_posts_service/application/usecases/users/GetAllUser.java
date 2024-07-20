@@ -8,13 +8,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.User;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.UserRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.GetAllUserUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetAllUser implements GetAllUserUseCase {
     private final UserRepository userRepository;
-
-    public GetAllUser(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public Page<User> execute(Pageable pageable) {

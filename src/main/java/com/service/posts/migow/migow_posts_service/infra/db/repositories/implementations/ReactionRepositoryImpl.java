@@ -10,14 +10,13 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaReactionRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Repository
 public class ReactionRepositoryImpl implements ReactionRepository {
 
     private final JpaReactionRepository jpaReactionRepository;
-
-    public ReactionRepositoryImpl(JpaReactionRepository jpaReactionRepository) {
-        this.jpaReactionRepository = jpaReactionRepository;
-    }
 
     @Override
     public Reaction createUpdateReaction(Reaction obj) {

@@ -9,14 +9,13 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.UpdateCommentByIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class UpdateCommentById implements UpdateCommentByIdUseCase {
 
     private final CommentRepository commentRepository;
-
-    public UpdateCommentById(CommentRepository commentRepository) {
-        this.commentRepository = commentRepository;
-    }
 
     @Override
     public Comment execute(UUID id, UpdateCommentDTO obj) {

@@ -8,13 +8,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.SharedPost;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.SharedPostRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaSharedPostRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Repository
 public class SharedPostRepositoryImpl implements SharedPostRepository {
     private final JpaSharedPostRepository jpaSharedPostRepository;
-
-    public SharedPostRepositoryImpl(JpaSharedPostRepository jpaSharedPostRepository) {
-        this.jpaSharedPostRepository = jpaSharedPostRepository;
-    }
 
     @Override
     public SharedPost createSharedPost(SharedPost obj) {

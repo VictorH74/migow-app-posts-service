@@ -9,9 +9,11 @@ import com.service.posts.migow.migow_posts_service.domain.entities.pks.SharedPos
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
 @Entity
 @Table(name="shared_posts")
+@Getter
 public class SharedPost implements Serializable {
     @EmbeddedId
     final private SharedPostPK id = new SharedPostPK();
@@ -22,14 +24,6 @@ public class SharedPost implements Serializable {
 
     public SharedPost(Instant createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public SharedPostPK getId() {
-        return id;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
     }
 
     public void setCreatedAt(Instant createdAt) {

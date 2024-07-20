@@ -10,6 +10,9 @@ import com.service.posts.migow.migow_posts_service.domain.entities.pks.Friendshi
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.FriendshipRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaFriendshipRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Repository
 public class FriendshipRepositoryImpl implements FriendshipRepository {
     private final JpaFriendshipRepository jpaFriendshipRepository;
@@ -17,10 +20,6 @@ public class FriendshipRepositoryImpl implements FriendshipRepository {
     @Override
     public List<Friendship> createManyFriendship(List<Friendship> objs) {
         return jpaFriendshipRepository.saveAll(objs);
-    }
-
-    public FriendshipRepositoryImpl(JpaFriendshipRepository jpaFriendshipRepository) {
-        this.jpaFriendshipRepository = jpaFriendshipRepository;
     }
 
     @Override

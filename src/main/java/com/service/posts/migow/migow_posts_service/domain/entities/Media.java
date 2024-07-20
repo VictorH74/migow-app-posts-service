@@ -10,9 +10,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "medias")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Media {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,45 +31,6 @@ public class Media {
     private String src;
 
     public Media() {
-    }
-
-    public Media(Long id, String name, String type, @URL String src) {
-        this.id = id;
-        this.name = name;
-        this.type = type;
-        this.src = src;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getSrc() {
-        return src;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public void setSrc(String src) {
-        this.src = src;
     }
 
     @Override

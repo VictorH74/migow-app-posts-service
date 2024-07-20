@@ -13,13 +13,12 @@ import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.CreateReactionUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class CreateReaction implements CreateReactionUseCase {
     private final ReactionRepository reactionRepository;
-
-    public CreateReaction(ReactionRepository reactionRepository) {
-        this.reactionRepository = reactionRepository;
-    }
 
     @Override
     public Reaction execute(CreateReactionDTO obj, UUID targetId, Class<?> targetClass) {

@@ -7,14 +7,13 @@ import org.springframework.stereotype.Component;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.SharedPostRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.shared_posts.GetSharedPostCountByPostIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetSharedPostCountByPostId implements GetSharedPostCountByPostIdUseCase {
 
     private final SharedPostRepository sharedPostRepository;
-
-    public GetSharedPostCountByPostId(SharedPostRepository sharedPostRepository) {
-        this.sharedPostRepository = sharedPostRepository;
-    }
 
     @Override
     public Long execute(UUID postId) {

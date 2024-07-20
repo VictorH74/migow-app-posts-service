@@ -14,9 +14,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "posts")
+@Getter
+@Setter
+@AllArgsConstructor
 public class Post implements  Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -38,63 +44,6 @@ public class Post implements  Serializable {
 
     public Post() {
         this.createdAt = Instant.now();
-    }
-
-    public Post(UUID id, User owner, Instant createdAt, String text, Set<Media> mediaList, Post sharedPost) {
-        this.id = id;
-        this.owner = owner;
-        this.createdAt = createdAt;
-        this.text = text;
-        this.mediaList = mediaList;
-        this.sharedPost = sharedPost;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public User getowner() {
-        return owner;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public Set<Media> getMediaList() {
-        return mediaList;
-    }
-
-    public Post getSharedPost() {
-        return sharedPost;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setowner(User owner) {
-        this.owner = owner;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public void setMediaList(Set<Media> mediaList) {
-        this.mediaList = mediaList;
-    }
-
-    public void setSharedPost(Post sharedPost) {
-        this.sharedPost = sharedPost;
     }
 
     @Override

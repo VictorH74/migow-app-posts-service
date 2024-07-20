@@ -10,13 +10,12 @@ import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.UpdateReactionByIdUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class UpdateReactionById implements UpdateReactionByIdUseCase {
     private final ReactionRepository reactionRepository;
-
-    public UpdateReactionById(ReactionRepository reactionRepository) {
-        this.reactionRepository = reactionRepository;
-    }
 
     @Override
     public Reaction execute(UUID id, UpdateReactionDTO obj) {

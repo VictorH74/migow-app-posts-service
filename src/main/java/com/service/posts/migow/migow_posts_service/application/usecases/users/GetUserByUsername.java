@@ -6,13 +6,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.User;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.UserRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.GetUserByUsernameUseCase;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Component
 public class GetUserByUsername implements GetUserByUsernameUseCase {
     private final UserRepository userRepository;
-
-    public GetUserByUsername(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public User execute(String username) {

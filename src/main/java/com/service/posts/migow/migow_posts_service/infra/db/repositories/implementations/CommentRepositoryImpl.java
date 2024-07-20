@@ -11,13 +11,12 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaCommentRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Repository
 public class CommentRepositoryImpl implements CommentRepository {
     private final JpaCommentRepository jpaCommentRepository;
-
-    public CommentRepositoryImpl(JpaCommentRepository jpaCommentRepository) {
-        this.jpaCommentRepository = jpaCommentRepository;
-    }
 
     @Override
     public Page<Comment> getAllCommentByPostId(UUID postId, Pageable pageable) {
