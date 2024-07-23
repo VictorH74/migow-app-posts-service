@@ -1,5 +1,6 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa;
 
+import java.time.Instant;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -13,7 +14,7 @@ public interface JpaReplyCommentRepository extends JpaRepository<ReplyComment, U
     @Query("SELECT COUNT(c) FROM ReplyComment c WHERE c.comment.id = :commentId")
     public Long countByCommentId(UUID commentId);
 
-    @Query("SELECT c FROM ReplyComment c WHERE c.comment.id = :commentId")
-    public Page<ReplyComment> findAllReplyCommentByCommentId(UUID commentId, Pageable pageable);
+    @Query("SELECT c FROM ReplyComment c WHERE c.comment.id = :commentId AND c.createdAt BETWEEN :startDate AND :endDate")
+    public Page<ReplyComment> findAllReplyCommentByCommentId(UUID commentId, Instant startDate, Instant endDate, Pageable pageable);
 
 }

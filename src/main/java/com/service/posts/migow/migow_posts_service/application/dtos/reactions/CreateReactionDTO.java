@@ -1,6 +1,6 @@
 package com.service.posts.migow.migow_posts_service.application.dtos.reactions;
 
-import com.service.posts.migow.migow_posts_service.domain.entities.User;
+import java.util.UUID;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,5 +9,7 @@ import lombok.Setter;
 @Setter
 public class CreateReactionDTO {
     private int type;
-    private User owner;
+    private UUID ownerId;
+    private UUID targetId;
+    private String targetClass;
 }

@@ -8,12 +8,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.PostRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaPostRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @AllArgsConstructor
 @Repository
 public class PostRepositoryImpl implements PostRepository {
@@ -27,22 +30,37 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public List<Post> createManyPost(List<Post> objs) {
-        return jpaPostRepository.saveAll(objs);
+        return jpaPostRepository.saveAllAndFlush(objs);
     }
 
     @Override
-    public Page<Post> getAllPostByUserId(UUID userId, Pageable pageable) {
-        return jpaPostRepository.findAllByUserId(userId, pageable);
+    public Page<Post> getAllPostByUserId(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable) {
+        log.info("getAllPostByUserId > dateRangeFilter: " + dateRangeFilter.toString());
+        return jpaPostRepository.findAllByUserId(
+                userId,
+                dateRangeFilter.getStartDate(),
+                dateRangeFilter.getEndDate(),
+                pageable);
     }
 
     @Override
-    public Page<Post> getAllFriendRecentPost(UUID userId, Pageable pageable) {
-        return jpaPostRepository.findAllFriendRecentPost(userId, pageable);
+    public Page<Post> getAllFriendRecentPost(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable) {
+        log.info("getAllFriendRecentPost > dateRangeFilter: " + dateRangeFilter.toString());
+        return jpaPostRepository.findAllFriendRecentPost(
+                userId,
+                dateRangeFilter.getStartDate(),
+                dateRangeFilter.getEndDate(),
+                pageable);
     }
 
     @Override
-    public Page<Post> getAllFriendPopularPost(UUID userId, Pageable pageable) {
-        return jpaPostRepository.findAllFriendPopularPost(userId, pageable);
+    public Page<Post> getAllFriendPopularPost(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable) {
+        log.info("getAllFriendPopularPost > dateRangeFilter: " + dateRangeFilter.toString());
+        return jpaPostRepository.findAllFriendPopularPost(
+                userId,
+                dateRangeFilter.getStartDate(),
+                dateRangeFilter.getEndDate(),
+                pageable);
     }
 
     @Override

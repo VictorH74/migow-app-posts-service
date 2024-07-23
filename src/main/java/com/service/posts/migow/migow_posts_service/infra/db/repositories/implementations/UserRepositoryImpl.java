@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
@@ -20,13 +18,8 @@ public class UserRepositoryImpl implements UserRepository {
     private final JpaUserRepository jpaUserRepository;
 
     @Override
-    public Page<User> getAllUser(Pageable pageable) {
-        return jpaUserRepository.findAll(pageable);
-    }
-
-    @Override
     public List<User> createManyUser(List<User> objs) {
-        return jpaUserRepository.saveAll(objs);
+        return jpaUserRepository.saveAllAndFlush(objs);
     }
 
     @Override

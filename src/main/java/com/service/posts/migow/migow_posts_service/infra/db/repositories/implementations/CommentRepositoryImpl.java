@@ -1,12 +1,14 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.implementations;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaCommentRepository;
@@ -19,8 +21,17 @@ public class CommentRepositoryImpl implements CommentRepository {
     private final JpaCommentRepository jpaCommentRepository;
 
     @Override
-    public Page<Comment> getAllCommentByPostId(UUID postId, Pageable pageable) {
-        return jpaCommentRepository.findAllCommentByPostId(postId, pageable);
+    public Page<Comment> getAllCommentByPostId(UUID postId, DateRangeFilter dateRangeFilter, Pageable pageable) {
+        return jpaCommentRepository.findAllCommentByPostId(
+                postId,
+                dateRangeFilter.getStartDate(),
+                dateRangeFilter.getEndDate(),
+                pageable);
+    }
+
+    @Override
+    public Optional<Comment> getCommentById(UUID id) {
+        return jpaCommentRepository.findById(id);
     }
 
     @Override

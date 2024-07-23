@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReplyCommentRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaReplyCommentRepository;
@@ -19,8 +20,13 @@ public class ReplyCommentRepositoryImpl implements ReplyCommentRepository {
     private final JpaReplyCommentRepository jpaReplyCommentRepository;
 
     @Override
-    public Page<ReplyComment> getAllReplyCommentByCommentId(UUID commentId, Pageable pageable) {
-        return jpaReplyCommentRepository.findAllReplyCommentByCommentId(commentId, pageable);
+    public Page<ReplyComment> getAllReplyCommentByCommentId(UUID commentId, DateRangeFilter dateRangeFilter,
+            Pageable pageable) {
+        return jpaReplyCommentRepository.findAllReplyCommentByCommentId(
+                commentId,
+                dateRangeFilter.getStartDate(),
+                dateRangeFilter.getEndDate(),
+                pageable);
     }
 
     @Override

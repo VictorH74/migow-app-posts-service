@@ -10,6 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateReplyCommentRequestDTO {
-    private UUID postId;
+    private UUID ownerId;
+    private UUID commentId;
     private String content;
 }

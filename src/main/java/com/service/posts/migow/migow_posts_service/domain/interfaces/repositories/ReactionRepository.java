@@ -5,12 +5,17 @@ import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 
 public interface ReactionRepository {
     Long getReactionCountByTarget(String target);
 
-    Page<Reaction> getAllReactionByTarget(String target, Pageable pageable);
+    Page<Reaction> getAllTargetReaction(String target, String usernamePrefix, DateRangeFilter dateRangeFilter, Pageable pageable);
+
+    Page<Reaction> getAllTargetReactionByReactionType(String target, String usernamePrefix, int reactionTypeCode, DateRangeFilter dateRangeFilter, Pageable pageable);
+
+    Long getCountByReactionType(String target, int reactionTypeCode);
 
     Reaction createUpdateReaction(Reaction obj);
 

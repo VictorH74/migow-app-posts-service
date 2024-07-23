@@ -28,9 +28,7 @@ public class Comment implements Serializable {
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
-    @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
-    private Post post;
+    private UUID postId;
     @Column(name = "content", nullable = false)
     private String content;
     private Instant createdAt;

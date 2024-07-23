@@ -1,5 +1,6 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa;
 
+import java.time.Instant;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -13,7 +14,13 @@ public interface JpaReactionRepository extends JpaRepository<Reaction, UUID> {
     @Query("SELECT COUNT(r) FROM Reaction r WHERE r.target = :target")
     long countByTarget(String target);
 
-    @Query("SELECT r FROM Reaction r WHERE r.target = :target")
-    Page<Reaction> findAllByTarget(String target, Pageable pageable);
+    @Query("SELECT r FROM Reaction r WHERE r.target = :target AND r.owner.username LIKE CONCAT(:usernamePrefix, '%') AND r.createdAt BETWEEN :startDate AND :endDate")
+    Page<Reaction> findAll(String target, String usernamePrefix, Instant startDate, Instant endDate, Pageable pageable);
+
+    @Query("SELECT r FROM Reaction r WHERE r.target = :target AND r.owner.username LIKE CONCAT(:usernamePrefix, '%') AND r.type = :reactionTypeCode AND r.createdAt BETWEEN :startDate AND :endDate")
+    Page<Reaction> findAllByReactioType(String target, String usernamePrefix, int reactionTypeCode, Instant startDate, Instant endDate, Pageable pageable);
+
+    @Query("SELECT COUNT(r) FROM Reaction r WHERE r.target = :target AND r.type = :reactionTypeCode")
+    Long findCountByReactionType(String target, int reactionTypeCode);
 
 }

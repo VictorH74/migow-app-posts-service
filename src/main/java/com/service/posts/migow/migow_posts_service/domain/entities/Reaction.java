@@ -1,6 +1,7 @@
 package com.service.posts.migow.migow_posts_service.domain.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -29,7 +30,10 @@ public class Reaction implements Serializable {
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
 
+    private Instant createdAt;
+
     public Reaction() {
+        this.createdAt = Instant.now();
     }
 
     @Override
@@ -48,21 +52,4 @@ public class Reaction implements Serializable {
         Reaction other = (Reaction) obj;
         return Objects.equals(id, other.id);
     }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
 }

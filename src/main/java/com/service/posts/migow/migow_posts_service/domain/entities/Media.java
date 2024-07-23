@@ -1,5 +1,6 @@
 package com.service.posts.migow.migow_posts_service.domain.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import org.hibernate.validator.constraints.URL;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Media {
+public class Media implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

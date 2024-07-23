@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.reply_comments.SimpleReplyCommentDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.reply_comments.UpdateReplyCommentDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReplyCommentRepository;
@@ -17,14 +18,16 @@ public class UpdateReplyCommentById implements UpdateReplyCommentByIdUseCase {
     private final ReplyCommentRepository replyCommentRepository;
 
     @Override
-    public ReplyComment execute(UUID id, UpdateReplyCommentDTO obj) {
+    public SimpleReplyCommentDTO execute(UUID id, UpdateReplyCommentDTO obj) {
         ReplyComment replyComment = new ReplyComment();
         replyComment.setId(id);
 
         if (!obj.getContent().isBlank())
             replyComment.setContent(obj.getContent());
 
-        return replyCommentRepository.createUpdateReplyComment(replyComment);
+        ReplyComment updatedReplyComment = replyCommentRepository.createUpdateReplyComment(replyComment);
+
+        return new SimpleReplyCommentDTO(updatedReplyComment);
     }
 
 }

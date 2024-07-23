@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
 import com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa.JpaReactionRepository;
@@ -30,8 +31,30 @@ public class ReactionRepositoryImpl implements ReactionRepository {
     }
 
     @Override
-    public Page<Reaction> getAllReactionByTarget(String target, Pageable pageable) {
-        return jpaReactionRepository.findAllByTarget(target, pageable);
+    public Long getCountByReactionType(String target, int reactionTypeCode) {
+        return jpaReactionRepository.findCountByReactionType(target, reactionTypeCode);
+    }
+
+    @Override
+    public Page<Reaction> getAllTargetReactionByReactionType(String target, String usernamePrefix, int reactionTypeCode,
+            DateRangeFilter dateRangeFilter, Pageable pageable) {
+        return jpaReactionRepository.findAllByReactioType(
+                target,
+                usernamePrefix,
+                reactionTypeCode,
+                dateRangeFilter.getStartDate(),
+                dateRangeFilter.getEndDate(),
+                pageable);
+    }
+
+    @Override
+    public Page<Reaction> getAllTargetReaction(String target, String usernamePrefix, DateRangeFilter dateRangeFilter, Pageable pageable) {
+        return jpaReactionRepository.findAll(
+                target,
+                usernamePrefix,
+                dateRangeFilter.getStartDate(),
+                dateRangeFilter.getEndDate(),
+                pageable);
     }
 
     @Override

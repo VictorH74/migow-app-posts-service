@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.SimpleReactionDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.reactions.UpdateReactionDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
@@ -18,15 +19,15 @@ public class UpdateReactionById implements UpdateReactionByIdUseCase {
     private final ReactionRepository reactionRepository;
 
     @Override
-    public Reaction execute(UUID id, UpdateReactionDTO obj) {
+    public SimpleReactionDTO execute(UUID id, UpdateReactionDTO obj) {
         Reaction reaction = new Reaction();
 
         reaction.setId(id);
-
-        // TODO: implement http exception
         reaction.setType(ReactionType.valueOf(obj.getType()).getCode());
 
-        return reactionRepository.createUpdateReaction(reaction);
+        Reaction updatedReaction = reactionRepository.createUpdateReaction(reaction);
+
+        return new SimpleReactionDTO(updatedReaction);
     }
 
 }

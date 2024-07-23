@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+import org.hibernate.validator.constraints.URL;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -37,16 +39,19 @@ public class User implements Serializable {
     @Email(message = "Invalid email")
     @NonNull
     private String email;
+    @URL
+    private String profileImageUrl;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRole> roles = new HashSet<>();
 
     public User(UUID id, @NonNull String username, @NonNull String password, @NonNull String name,
-            @Email(message = "Invalid email") @NonNull String email) {
+            @Email(message = "Invalid email") @NonNull String email, String profileImageUrl) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
+        this.profileImageUrl = profileImageUrl;
     }
 
 }
