@@ -14,14 +14,20 @@ public interface JpaPostRepository extends JpaRepository<Post, UUID> {
     @Query("SELECT p FROM Post p WHERE p.owner.id = :userId AND p.createdAt BETWEEN :startDate AND :endDate")
     public Page<Post> findAllByUserId(UUID userId, Instant startDate, Instant endDate, Pageable pageable);
 
-    @Query("SELECT p FROM Post p JOIN Friendship f ON p.owner.id = f.id.friendUser.id WHERE f.id.user.id = :userId AND p.createdAt BETWEEN :startDate AND :endDate ORDER BY p.createdAt DESC")
+    @Query("SELECT p FROM Post p " +
+       "JOIN Friendship f ON p.owner.id = f.id.friendUser.id OR p.owner.id = f.id.user.id " +
+       "LEFT JOIN Comment c ON p.id = c.postId " +
+       "LEFT JOIN Reaction r ON CONCAT('post_', p.id) = r.target " +
+       "WHERE (f.id.user.id = :userId OR f.id.friendUser.id = :userId) AND p.createdAt BETWEEN :startDate AND :endDate " +
+       "GROUP BY p.id " +
+       "ORDER BY p.createdAt DESC")
     public Page<Post> findAllFriendRecentPost(UUID userId, Instant startDate, Instant endDate, Pageable pageable);
 
     @Query("SELECT p FROM Post p " +
-       "JOIN Friendship f ON p.owner.id = f.id.friendUser.id " +
+       "JOIN Friendship f ON p.owner.id = f.id.friendUser.id OR p.owner.id = f.id.user.id " +
        "LEFT JOIN Comment c ON p.id = c.postId " +
        "LEFT JOIN Reaction r ON CONCAT('post_', p.id) = r.target " +
-       "WHERE f.id.user.id = :userId AND p.createdAt BETWEEN :startDate AND :endDate " +
+       "WHERE (f.id.user.id = :userId OR f.id.friendUser.id = :userId) AND p.createdAt BETWEEN :startDate AND :endDate " +
        "GROUP BY p.id " +
        "ORDER BY (COUNT(c.id) + COUNT(r.id)) DESC")
     public Page<Post> findAllFriendPopularPost(UUID userId, Instant startDate, Instant endDate, Pageable pageable);
