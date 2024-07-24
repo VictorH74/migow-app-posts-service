@@ -14,7 +14,7 @@ public interface JpaReplyCommentRepository extends JpaRepository<ReplyComment, U
     @Query("SELECT COUNT(c) FROM ReplyComment c WHERE c.comment.id = :commentId")
     public Long countByCommentId(UUID commentId);
 
-    @Query("SELECT c FROM ReplyComment c WHERE c.comment.id = :commentId AND c.createdAt BETWEEN :startDate AND :endDate")
+    @Query("SELECT c FROM ReplyComment c WHERE c.comment.id = :commentId AND c.createdAt BETWEEN :startDate AND :endDate ORDER BY c.createdAt DESC")
     public Page<ReplyComment> findAllReplyCommentByCommentId(UUID commentId, Instant startDate, Instant endDate, Pageable pageable);
 
 }

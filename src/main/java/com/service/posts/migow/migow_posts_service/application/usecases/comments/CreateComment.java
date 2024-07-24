@@ -4,6 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
+import com.service.posts.migow.migow_posts_service.application.dtos.comments.CreateCommentDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
@@ -20,13 +21,13 @@ public class CreateComment implements CreateCommentUseCase {
     private final GetUserByIdUseCase getUserByIdUseCase;
 
     @Override
-    public Comment execute(UUID userId, UUID postId, String commentContent) {
-        User user = getUserByIdUseCase.execute(userId);
+    public Comment execute(CreateCommentDTO obj) {
+        User user = getUserByIdUseCase.execute(obj.getUserId());
 
         Comment comment = new Comment();
-        comment.setContent(commentContent);
+        comment.setContent(obj.getContent());
         comment.setOwner(user);
-        comment.setPostId(postId);
+        comment.setPostId(obj.getPostId());
 
         return commentRepository.createUpdateComment(comment);
     }

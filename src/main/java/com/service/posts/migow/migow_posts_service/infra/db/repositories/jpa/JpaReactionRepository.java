@@ -14,10 +14,10 @@ public interface JpaReactionRepository extends JpaRepository<Reaction, UUID> {
     @Query("SELECT COUNT(r) FROM Reaction r WHERE r.target = :target")
     long countByTarget(String target);
 
-    @Query("SELECT r FROM Reaction r WHERE r.target = :target AND r.owner.username LIKE CONCAT(:usernamePrefix, '%') AND r.createdAt BETWEEN :startDate AND :endDate")
+    @Query("SELECT r FROM Reaction r WHERE r.target = :target AND r.owner.username LIKE CONCAT(:usernamePrefix, '%') AND r.createdAt BETWEEN :startDate AND :endDate ORDER BY r.createdAt DESC")
     Page<Reaction> findAll(String target, String usernamePrefix, Instant startDate, Instant endDate, Pageable pageable);
 
-    @Query("SELECT r FROM Reaction r WHERE r.target = :target AND r.owner.username LIKE CONCAT(:usernamePrefix, '%') AND r.type = :reactionTypeCode AND r.createdAt BETWEEN :startDate AND :endDate")
+    @Query("SELECT r FROM Reaction r WHERE r.target = :target AND r.owner.username LIKE CONCAT(:usernamePrefix, '%') AND r.type = :reactionTypeCode AND r.createdAt BETWEEN :startDate AND :endDate ORDER BY r.createdAt DESC")
     Page<Reaction> findAllByReactioType(String target, String usernamePrefix, int reactionTypeCode, Instant startDate, Instant endDate, Pageable pageable);
 
     @Query("SELECT COUNT(r) FROM Reaction r WHERE r.target = :target AND r.type = :reactionTypeCode")

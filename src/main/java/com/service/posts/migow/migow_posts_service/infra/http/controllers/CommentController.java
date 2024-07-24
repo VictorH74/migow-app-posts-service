@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.application.dtos.comments.CommentResponseDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.comments.CreateCommentDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.comments.UpdateCommentDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.CreateCommentUseCase;
@@ -51,12 +52,14 @@ public class CommentController {
         return getAllCommentByPostIdUseCase.execute(postId, dateRangeFilter, pageable);
     }
 
-    @PostMapping("/{postId}")
-    public Comment createPostComment(@PathVariable UUID postId, @RequestBody String content) {
-        UUID useId = SecurityUtils.getAuthenticatedUserId();
+    @PostMapping
+    public Comment createPostComment(@RequestBody CreateCommentDTO obj) {
+        UUID userId = SecurityUtils.getAuthenticatedUserId();
+
+        obj.setUserId(userId);
         // TODO: provide created entity to kafka
 
-        return createCommentUseCase.execute(useId, postId, content);
+        return createCommentUseCase.execute(obj);
     }
 
     @PatchMapping("/{commentId}")

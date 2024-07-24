@@ -33,10 +33,12 @@ import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.po
 import com.service.posts.migow.migow_posts_service.infra.helpers.SecurityUtils;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @RestController
 @RequestMapping("/posts")
 @AllArgsConstructor
+@Log4j2
 public class PostController {
 
     private final GetPostByIdUseCase getPostByIdUseCase;
@@ -81,6 +83,8 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<Post> createPost(@RequestBody CreatePostDTO obj) {
+        UUID userId = SecurityUtils.getAuthenticatedUserId();
+        obj.setOwnerId(userId);
         Post post = createPostUseCase.execute(obj);
         // TODO: provide created entity to kafka
 
