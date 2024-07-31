@@ -7,9 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CreateReactionDTO {
+public class CreateUpdateReactionDTO {
+    private UUID id;
     private int type;
     private UUID ownerId;
-    private UUID targetId;
-    private String targetClass;
+    private String target;
 }
