@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import com.service.posts.migow.migow_posts_service.application.dtos.reactions.CreateReactionDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.CreateUpdateReactionDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.entities.Friendship;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
@@ -19,7 +19,7 @@ import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.CreateManyCommentUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.friendships.CreateManyFriendshipUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.posts.CreateManyPostUseCase;
-import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.CreateReactionUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.CreateUpdateReactionUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.CreateManyReplyCommentUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.users.CreateManyUserUseCase;
 
@@ -37,7 +37,7 @@ public class Instanciation implements CommandLineRunner {
         @Autowired
         CreateManyFriendshipUseCase createManyFriendshipUseCase;
         @Autowired
-        CreateReactionUseCase createReactionUseCase;
+        CreateUpdateReactionUseCase createReactionUseCase;
 
         @Override
         public void run(String... args) throws Exception {
@@ -99,7 +99,7 @@ public class Instanciation implements CommandLineRunner {
                                 { 5, 6 }, { 5, 7 }, { 5, 8 },
                                 { 6, 0 }, { 6, 1 }, { 6, 7 }, { 6, 8 },
                                 { 7, 0 }, { 7, 9 },
-                                { 8, 0 }, { 8, 7 }, { 8, 9 }, { 9, 0 }, 
+                                { 8, 0 }, { 8, 7 }, { 8, 9 }, { 9, 0 },
                                 { 9, 1 }, { 9, 3 }, { 9, 5 }
                 };
 
@@ -182,47 +182,40 @@ public class Instanciation implements CommandLineRunner {
 
                 createManyReplyCommentUseCase.execute(replyComments);
 
-                CreateReactionDTO r1 = new CreateReactionDTO();
+                CreateUpdateReactionDTO r1 = new CreateUpdateReactionDTO();
                 r1.setOwnerId(savedUsers.get(1).getId());
                 r1.setType(ReactionType.FUNNY.getCode());
-                r1.setTargetId(savedPosts.get(0).getId());
-                r1.setTargetClass("post_");
+                r1.setTarget("post_" + savedPosts.get(0).getId());
 
-                CreateReactionDTO r2 = new CreateReactionDTO();
+                CreateUpdateReactionDTO r2 = new CreateUpdateReactionDTO();
                 r2.setOwnerId(savedUsers.get(2).getId());
                 r2.setType(ReactionType.FUNNY.getCode());
-                r2.setTargetId(savedPosts.get(0).getId());
-                r2.setTargetClass("post_");
+                r2.setTarget("post_" + savedPosts.get(0).getId());
 
-                CreateReactionDTO r3 = new CreateReactionDTO();
+                CreateUpdateReactionDTO r3 = new CreateUpdateReactionDTO();
                 r3.setOwnerId(savedUsers.get(3).getId());
                 r3.setType(ReactionType.FUNNY.getCode());
-                r3.setTargetId(savedPosts.get(0).getId());
-                r3.setTargetClass("post_");
+                r3.setTarget("post_" + savedPosts.get(0).getId());
 
-                CreateReactionDTO r4 = new CreateReactionDTO();
+                CreateUpdateReactionDTO r4 = new CreateUpdateReactionDTO();
                 r4.setOwnerId(savedUsers.get(4).getId());
                 r4.setType(ReactionType.FUNNY.getCode());
-                r4.setTargetId(savedPosts.get(1).getId());
-                r4.setTargetClass("post_");
+                r4.setTarget("post_" + savedPosts.get(1).getId());
 
-                CreateReactionDTO r5 = new CreateReactionDTO();
+                CreateUpdateReactionDTO r5 = new CreateUpdateReactionDTO();
                 r5.setOwnerId(savedUsers.get(5).getId());
                 r5.setType(ReactionType.LOVE.getCode());
-                r5.setTargetId(savedPosts.get(1).getId());
-                r5.setTargetClass("post_");
+                r5.setTarget("post_" + savedPosts.get(1).getId());
 
-                CreateReactionDTO r6 = new CreateReactionDTO();
+                CreateUpdateReactionDTO r6 = new CreateUpdateReactionDTO();
                 r6.setOwnerId(savedUsers.get(6).getId());
                 r6.setType(ReactionType.SAD.getCode());
-                r6.setTargetId(savedPosts.get(1).getId());
-                r6.setTargetClass("post_");
+                r6.setTarget("post_" + savedPosts.get(1).getId());
 
-                CreateReactionDTO r7 = new CreateReactionDTO();
+                CreateUpdateReactionDTO r7 = new CreateUpdateReactionDTO();
                 r7.setOwnerId(savedUsers.get(7).getId());
                 r7.setType(ReactionType.FUNNY.getCode());
-                r7.setTargetId(savedPosts.get(1).getId());
-                r7.setTargetClass("post_");
+                r7.setTarget("post_" + savedPosts.get(1).getId());
 
                 createReactionUseCase.execute(r1);
                 createReactionUseCase.execute(r2);

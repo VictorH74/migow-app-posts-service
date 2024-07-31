@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.DeleteCommentByIdUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.DeleteAllReactionByTargetUseCase;
 
 import lombok.AllArgsConstructor;
 
@@ -13,10 +14,12 @@ import lombok.AllArgsConstructor;
 @Component
 public class DeleteCommentById implements DeleteCommentByIdUseCase {
     private final CommentRepository commentRepository;
+    private final DeleteAllReactionByTargetUseCase deleteAllReactionByTargetUseCase;
 
     @Override
     public void execute(UUID id) {
         commentRepository.deleteCommentById(id);
+        deleteAllReactionByTargetUseCase.execute("comment_" + id);
     }
 
 }

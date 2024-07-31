@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -22,7 +21,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Reaction implements Serializable {
     @Id
-    @GeneratedValue(generator = "UUID")
     private UUID id;
     private String target;
     private int type;

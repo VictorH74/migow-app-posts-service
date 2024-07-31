@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionTypeCountsDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.SimpleReactionDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Media;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
@@ -24,6 +25,7 @@ public class PostResponseDTO implements Serializable {
     private Post sharedPost;
     private Long reactCount, commentCount, shareCount;
     private ReactionTypeCountsDTO reactionTypeCounts;
+    private SimpleReactionDTO currentUserReaction;
 
     public PostResponseDTO(Post post,
             Long reactCount, Long commentCount, Long shareCount) {

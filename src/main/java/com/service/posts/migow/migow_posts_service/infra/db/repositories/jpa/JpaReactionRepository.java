@@ -1,6 +1,7 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.jpa;
 
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -22,5 +23,11 @@ public interface JpaReactionRepository extends JpaRepository<Reaction, UUID> {
 
     @Query("SELECT COUNT(r) FROM Reaction r WHERE r.target = :target AND r.type = :reactionTypeCode")
     Long findCountByReactionType(String target, int reactionTypeCode);
+
+    @Query("SELECT r FROM Reaction r WHERE r.owner.id = :ownerId AND r.target = :target")
+    Optional<Reaction> findReactionByOwnerId(UUID ownerId, String target);
+
+    @Query("DELETE FROM Reaction r WHERE r.target = :target")
+    void deleteAllByTarget(String target);
 
 }

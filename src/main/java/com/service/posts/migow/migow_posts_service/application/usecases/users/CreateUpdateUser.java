@@ -17,7 +17,7 @@ public class CreateUpdateUser implements CreateUpdateUserUseCase {
 
     @Override
     public User execute(User obj) {
-        if (obj.getId().toString().isEmpty())
+        if (obj.getId() == null)
             obj.setId(UUID.randomUUID());
             
         return userRepository.createUpdateUser(obj);

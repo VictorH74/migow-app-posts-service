@@ -1,5 +1,6 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.implementations;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -16,8 +17,18 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Repository
 public class ReactionRepositoryImpl implements ReactionRepository {
-
     private final JpaReactionRepository jpaReactionRepository;
+
+    @Override
+    public Optional<Reaction> getReactionByOwnerId(UUID ownerId, String target) {
+        return jpaReactionRepository.findReactionByOwnerId(ownerId, target);
+    }
+
+    @Override
+    public void deleteAllByTarget(String target) {
+        jpaReactionRepository.deleteAllByTarget(target);
+
+    }
 
     @Override
     public Reaction createUpdateReaction(Reaction obj) {
@@ -48,7 +59,8 @@ public class ReactionRepositoryImpl implements ReactionRepository {
     }
 
     @Override
-    public Page<Reaction> getAllTargetReaction(String target, String usernamePrefix, DateRangeFilter dateRangeFilter, Pageable pageable) {
+    public Page<Reaction> getAllTargetReaction(String target, String usernamePrefix, DateRangeFilter dateRangeFilter,
+            Pageable pageable) {
         return jpaReactionRepository.findAll(
                 target,
                 usernamePrefix,
