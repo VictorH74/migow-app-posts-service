@@ -7,9 +7,9 @@ import java.util.UUID;
 
 import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionTypeCountsDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.reactions.SimpleReactionDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.users.SimpleUserDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.Media;
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
-import com.service.posts.migow.migow_posts_service.domain.entities.User;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +18,7 @@ import lombok.Setter;
 @Setter
 public class PostResponseDTO implements Serializable {
     private UUID id;
-    private User owner;
+    private SimpleUserDTO owner;
     private Instant createdAt;
     private String text;
     private Set<Media> mediaList;
@@ -30,7 +30,7 @@ public class PostResponseDTO implements Serializable {
     public PostResponseDTO(Post post,
             Long reactCount, Long commentCount, Long shareCount) {
         this.id = post.getId();
-        this.owner = post.getOwner();
+        this.owner = new SimpleUserDTO(post.getOwner());
         this.createdAt = post.getCreatedAt();
         this.text = post.getText();
         this.mediaList = post.getMediaList();

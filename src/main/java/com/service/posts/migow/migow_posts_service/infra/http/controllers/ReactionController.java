@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.application.dtos.reactions.CreateUpdateReactionDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.reactions.SimpleReactionDTO;
-import com.service.posts.migow.migow_posts_service.application.dtos.users.SimpleUserDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.users.ReactionSimpleUserDTO;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.CreateUpdateReactionUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.DeleteReactionByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllTargetReactionUserByReactionTypeUseCase;
@@ -40,7 +40,7 @@ public class ReactionController {
     private final DeleteReactionByIdUseCase deleteReactionByIdUseCase;
 
     @GetMapping("/with-target/{target}")
-    public Page<SimpleUserDTO> getReactionUsersByUsernamePrefix(
+    public Page<ReactionSimpleUserDTO> getReactionUsersByUsernamePrefix(
             @PathVariable String target,
             @RequestParam(name = "usernamePrefix", defaultValue = "") String usernamePrefix,
             @RequestParam(name = "startDate", defaultValue = "") String startDate,
@@ -54,7 +54,7 @@ public class ReactionController {
     }
 
     @GetMapping("/with-target/{target}/by-reaction-type/{reactionTypeCode}")
-    public Page<SimpleUserDTO> getReactionUsersByUsernamePrefixAndReactionT(
+    public Page<ReactionSimpleUserDTO> getReactionUsersByUsernamePrefixAndReactionT(
             @PathVariable String target,
             @PathVariable int reactionTypeCode,
             @RequestParam(name = "usernamePrefix", defaultValue = "") String usernamePrefix,

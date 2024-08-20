@@ -24,19 +24,19 @@ public class Media implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "name", nullable = false, length = 20)
+    @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "type", nullable = false, length = 10)
     private String type;
     @URL
-    private String src;
+    private String url;
 
     public Media() {
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(name, type, url);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Media implements Serializable {
         if (getClass() != obj.getClass())
             return false;
         Media other = (Media) obj;
-        return Objects.equals(id, other.id);
+        return Objects.equals(name, other.name) && Objects.equals(type, other.type) && Objects.equals(url, other.url);
     }
 
 }

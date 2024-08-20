@@ -4,9 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
-import com.service.posts.migow.migow_posts_service.application.dtos.users.SimpleUserDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.users.ReactionSimpleUserDTO;
 
 public interface GetAllTargetReactionUserByReactionTypeUseCase {
-    public Page<SimpleUserDTO> execute(String target, String usernamePrefix, int reactionTypeCode, DateRangeFilter dateRangeFilter,
+    public Page<ReactionSimpleUserDTO> execute(String target, String usernamePrefix, int reactionTypeCode, DateRangeFilter dateRangeFilter,
             Pageable pageable);
 }
