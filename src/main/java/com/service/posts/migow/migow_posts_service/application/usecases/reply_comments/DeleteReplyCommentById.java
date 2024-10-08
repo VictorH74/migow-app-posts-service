@@ -13,13 +13,16 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class DeleteReplyCommentById implements DeleteReplyCommentByIdUseCase {
+
     private final ReplyCommentRepository commentRepository;
     private final DeleteAllReactionByTargetUseCase deleteAllReactionByTargetUseCase;
 
     @Override
     public void execute(UUID id) {
-        commentRepository.deleteReplyCommentById(id);
+        commentRepository.deleteById(id);
         deleteAllReactionByTargetUseCase.execute("reply_comment_" + id);
+
+        // TODO: provide deleted entity to kafka
     }
 
 }

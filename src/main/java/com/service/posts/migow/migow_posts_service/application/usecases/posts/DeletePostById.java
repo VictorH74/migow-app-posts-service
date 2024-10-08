@@ -13,13 +13,16 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class DeletePostById implements DeletePostByIdUseCase {
+
     private final PostRepository postRepository;
     private final DeleteAllReactionByTargetUseCase deleteAllReactionByTargetUseCase;
 
     @Override
     public void execute(UUID id) {
-        postRepository.deletePostById(id);
+        postRepository.deleteById(id);
         deleteAllReactionByTargetUseCase.execute("post_" + id);
+
+        // TODO: provide deleted entity to kafka
     }
 
 }

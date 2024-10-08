@@ -2,8 +2,9 @@ package com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.p
 
 import java.util.UUID;
 
-import com.service.posts.migow.migow_posts_service.domain.entities.Post;
+import com.service.posts.migow.migow_posts_service.application.dtos.posts.PostResponseDTO;
 
 public interface GetPostByIdUseCase {
-    Post execute(UUID id);
+
+    PostResponseDTO execute(UUID id);
 }

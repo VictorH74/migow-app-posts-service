@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Component;
 
-import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionTypeCountsDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionCountByTypeDTO;
 import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
 import com.service.posts.migow.migow_posts_service.domain.helpers.validators.ReactionTargetValidator;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
@@ -15,11 +15,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class GetTargetReactionTypeCounts implements GetTargetReactionTypeCountsUseCase {
+
     private final ReactionRepository reactionRepository;
 
     @Override
-    public ReactionTypeCountsDTO execute(UUID targetId, String targetClass) {
-        ReactionTypeCountsDTO reactionTypeCountsDTO = new ReactionTypeCountsDTO();
+    public ReactionCountByTypeDTO execute(UUID targetId, String targetClass) {
+        ReactionCountByTypeDTO reactionCountByTypeDTO = new ReactionCountByTypeDTO();
 
         String target = ReactionTargetValidator.generateTarget(targetId, targetClass);
 
@@ -30,14 +31,14 @@ public class GetTargetReactionTypeCounts implements GetTargetReactionTypeCountsU
         Long cuteReaction = reactionRepository.getCountByReactionType(target, ReactionType.CUTE.getCode());
         Long scaryReaction = reactionRepository.getCountByReactionType(target, ReactionType.SCARY.getCode());
 
-        reactionTypeCountsDTO.setLikeReaction(likeReaction);
-        reactionTypeCountsDTO.setFunnyReaction(funnyReaction);
-        reactionTypeCountsDTO.setLoveReaction(loveReaction);
-        reactionTypeCountsDTO.setSadReaction(sadReaction);
-        reactionTypeCountsDTO.setCuteReaction(cuteReaction);
-        reactionTypeCountsDTO.setScaryReaction(scaryReaction);
+        reactionCountByTypeDTO.setLikeReaction(likeReaction);
+        reactionCountByTypeDTO.setFunnyReaction(funnyReaction);
+        reactionCountByTypeDTO.setLoveReaction(loveReaction);
+        reactionCountByTypeDTO.setSadReaction(sadReaction);
+        reactionCountByTypeDTO.setCuteReaction(cuteReaction);
+        reactionCountByTypeDTO.setScaryReaction(scaryReaction);
 
-        return reactionTypeCountsDTO;
+        return reactionCountByTypeDTO;
 
     }
 

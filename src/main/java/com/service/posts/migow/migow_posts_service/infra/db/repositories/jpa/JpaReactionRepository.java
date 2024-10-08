@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 
 public interface JpaReactionRepository extends JpaRepository<Reaction, UUID> {
+
     @Query("SELECT COUNT(r) FROM Reaction r WHERE r.target = :target")
     long countByTarget(String target);
 
@@ -25,7 +26,7 @@ public interface JpaReactionRepository extends JpaRepository<Reaction, UUID> {
     Long findCountByReactionType(String target, int reactionTypeCode);
 
     @Query("SELECT r FROM Reaction r WHERE r.owner.id = :ownerId AND r.target = :target")
-    Optional<Reaction> findReactionByOwnerId(UUID ownerId, String target);
+    Optional<Reaction> findByOwnerId(UUID ownerId, String target);
 
     @Query("DELETE FROM Reaction r WHERE r.target = :target")
     void deleteAllByTarget(String target);

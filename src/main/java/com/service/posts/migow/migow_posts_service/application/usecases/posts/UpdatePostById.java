@@ -14,6 +14,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class UpdatePostById implements UpdatePostByIdUseCase {
+
     private final PostRepository postRepository;
 
     @Override
@@ -21,13 +22,15 @@ public class UpdatePostById implements UpdatePostByIdUseCase {
         Post post = new Post();
         post.setId(id);
 
-        if (!obj.getText().isBlank())
+        if (!obj.getText().isBlank()) {
             post.setText(obj.getText());
+        }
 
-        if (!obj.getMediaList().isEmpty())
+        if (!obj.getMediaList().isEmpty()) {
             post.setMediaList(obj.getMediaList());
+        }
 
-        return postRepository.createUpdatePost(post);
+        return postRepository.createUpdate(post);
     }
 
 }

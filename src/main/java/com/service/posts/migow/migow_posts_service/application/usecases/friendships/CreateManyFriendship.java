@@ -13,11 +13,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class CreateManyFriendship implements CreateManyFriendshipUseCase {
+
     private final FriendshipRepository friendshipRepository;
 
     @Override
     public List<Friendship> execute(List<Friendship> objs) {
-        return friendshipRepository.createManyFriendship(objs);
+        return friendshipRepository.createMany(objs);
     }
 
 }

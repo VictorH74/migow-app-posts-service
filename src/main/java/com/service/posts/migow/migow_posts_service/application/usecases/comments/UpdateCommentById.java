@@ -22,10 +22,11 @@ public class UpdateCommentById implements UpdateCommentByIdUseCase {
         Comment comment = new Comment();
         comment.setId(id);
 
-        if (!obj.getContent().isBlank())
+        if (!obj.getContent().isBlank()) {
             comment.setContent(obj.getContent());
+        }
 
-        return commentRepository.createUpdateComment(comment);
+        return commentRepository.createUpdate(comment);
     }
 
 }

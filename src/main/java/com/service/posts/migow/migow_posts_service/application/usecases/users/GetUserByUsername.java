@@ -11,12 +11,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class GetUserByUsername implements GetUserByUsernameUseCase {
+
     private final UserRepository userRepository;
 
     @Override
     public User execute(String username) {
         // TODO: create handler execption
-        return userRepository.getUserByUsername(username).get();
+        return userRepository.getByUsername(username).get();
     }
 
 }

@@ -13,14 +13,16 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class CreateUpdateUser implements CreateUpdateUserUseCase {
+
     private final UserRepository userRepository;
 
     @Override
     public User execute(User obj) {
-        if (obj.getId() == null)
+        if (obj.getId() == null) {
             obj.setId(UUID.randomUUID());
-            
-        return userRepository.createUpdateUser(obj);
+        }
+
+        return userRepository.createUpdate(obj);
     }
 
 }

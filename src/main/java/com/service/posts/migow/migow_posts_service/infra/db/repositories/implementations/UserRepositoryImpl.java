@@ -15,30 +15,31 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Repository
 public class UserRepositoryImpl implements UserRepository {
+
     private final JpaUserRepository jpaUserRepository;
 
     @Override
-    public List<User> createManyUser(List<User> objs) {
+    public List<User> createMany(List<User> objs) {
         return jpaUserRepository.saveAllAndFlush(objs);
     }
 
     @Override
-    public User createUpdateUser(User obj) {
+    public User createUpdate(User obj) {
         return jpaUserRepository.save(obj);
     }
 
     @Override
-    public void deleteUserById(UUID id) {
+    public void deleteById(UUID id) {
         jpaUserRepository.deleteById(id);
     }
 
     @Override
-    public Optional<User> getUserById(UUID id) {
+    public Optional<User> getById(UUID id) {
         return jpaUserRepository.findById(id);
     }
 
     @Override
-    public Optional<User> getUserByUsername(String username) {
+    public Optional<User> getByUsername(String username) {
         return jpaUserRepository.findByUsername(username);
     }
 

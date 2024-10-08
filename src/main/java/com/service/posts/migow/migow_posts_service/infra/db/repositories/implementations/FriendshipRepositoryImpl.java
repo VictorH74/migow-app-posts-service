@@ -15,25 +15,26 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Repository
 public class FriendshipRepositoryImpl implements FriendshipRepository {
+
     private final JpaFriendshipRepository jpaFriendshipRepository;
 
     @Override
-    public List<Friendship> createManyFriendship(List<Friendship> objs) {
+    public List<Friendship> createMany(List<Friendship> objs) {
         return jpaFriendshipRepository.saveAll(objs);
     }
 
     @Override
-    public Friendship createFriendship(Friendship obj) {
+    public Friendship create(Friendship obj) {
         return jpaFriendshipRepository.save(obj);
     }
 
     @Override
-    public void deleteFriendship(FriendshipPK id) {
+    public void delete(FriendshipPK id) {
         jpaFriendshipRepository.deleteById(id);
     }
 
     @Override
-    public boolean getFriendshipStatus(UUID userId, UUID userId2) {
+    public boolean getStatusByUserId(UUID userId, UUID userId2) {
         return jpaFriendshipRepository.isFriend(userId, userId2);
     }
 

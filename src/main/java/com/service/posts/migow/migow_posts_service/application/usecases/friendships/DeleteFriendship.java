@@ -26,7 +26,7 @@ public class DeleteFriendship implements DeleteFriendshipUseCase {
         User friendUser = getUserByIdUseCase.execute(userId2);
         friendshipPK.setUser(user);
         friendshipPK.setFriendUser(friendUser);
-        friendshipRepository.deleteFriendship(friendshipPK);
+        friendshipRepository.delete(friendshipPK);
     }
 
 }

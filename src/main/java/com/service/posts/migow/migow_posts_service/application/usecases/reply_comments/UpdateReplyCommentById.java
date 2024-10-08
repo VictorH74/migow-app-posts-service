@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class UpdateReplyCommentById implements UpdateReplyCommentByIdUseCase {
+
     private final ReplyCommentRepository replyCommentRepository;
 
     @Override
@@ -22,10 +23,11 @@ public class UpdateReplyCommentById implements UpdateReplyCommentByIdUseCase {
         ReplyComment replyComment = new ReplyComment();
         replyComment.setId(id);
 
-        if (!obj.getContent().isBlank())
+        if (!obj.getContent().isBlank()) {
             replyComment.setContent(obj.getContent());
+        }
 
-        ReplyComment updatedReplyComment = replyCommentRepository.createUpdateReplyComment(replyComment);
+        ReplyComment updatedReplyComment = replyCommentRepository.createUpdate(replyComment);
 
         return new SimpleReplyCommentDTO(updatedReplyComment);
     }

@@ -13,11 +13,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class CreateManyPost implements CreateManyPostUseCase {
+
     private final PostRepository postRepository;
 
     @Override
     public List<Post> execute(List<Post> objs) {
-        return postRepository.createManyPost(objs);
+        return postRepository.createMany(objs);
     }
 
 }

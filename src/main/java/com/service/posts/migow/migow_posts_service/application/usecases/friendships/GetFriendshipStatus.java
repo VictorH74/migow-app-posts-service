@@ -21,7 +21,7 @@ public class GetFriendshipStatus implements GetFriendshipStatusUseCase {
     public boolean execute(UUID userId, UUID userId2) {
         getUserByIdUseCase.execute(userId);
         getUserByIdUseCase.execute(userId2);
-        return friendshipRepository.getFriendshipStatus(userId, userId2);
+        return friendshipRepository.getStatusByUserId(userId, userId2);
     }
 
 }

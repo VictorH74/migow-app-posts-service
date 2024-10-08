@@ -7,7 +7,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -25,7 +24,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Post implements  Serializable {
+public class Post implements Serializable {
+
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID id;
@@ -41,7 +41,8 @@ public class Post implements  Serializable {
     @JoinColumn(name = "media_list")
     private Set<Media> mediaList;
 
-    @Column(name="shared_post_id", nullable = true)
+    @JoinColumn(name = "shared_post_id", nullable = true)
+    @ManyToOne
     private Post sharedPost;
 
     public Post() {
@@ -55,10 +56,12 @@ public class Post implements  Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null || getClass() != obj.getClass())
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
+        }
         Post other = (Post) obj;
         return Objects.equals(id, other.id);
     }

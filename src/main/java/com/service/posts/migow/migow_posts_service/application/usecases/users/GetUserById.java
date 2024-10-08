@@ -13,12 +13,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class GetUserById implements GetUserByIdUseCase {
+
     private final UserRepository userRepository;
 
     @Override
     public User execute(UUID id) {
         // TODO: create handler execption
-        return userRepository.getUserById(id).get();
+        return userRepository.getById(id).get();
     }
 
 }

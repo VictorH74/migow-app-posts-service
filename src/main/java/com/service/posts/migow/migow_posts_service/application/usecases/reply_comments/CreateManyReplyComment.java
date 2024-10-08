@@ -13,11 +13,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class CreateManyReplyComment implements CreateManyReplyCommentUseCase {
+
     private final ReplyCommentRepository replyCommentRepository;
 
     @Override
     public List<ReplyComment> execute(List<ReplyComment> objs) {
-        return replyCommentRepository.createManyReplyComment(objs);
+        return replyCommentRepository.createMany(objs);
     }
 
 }

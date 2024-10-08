@@ -24,17 +24,22 @@ public class PostRepositoryImpl implements PostRepository {
     private final JpaPostRepository jpaPostRepository;
 
     @Override
-    public Post createUpdatePost(Post obj) {
+    public Long getShareCount(UUID postId) {
+        return jpaPostRepository.findShareCount(postId);
+    }
+
+    @Override
+    public Post createUpdate(Post obj) {
         return jpaPostRepository.save(obj);
     }
 
     @Override
-    public List<Post> createManyPost(List<Post> objs) {
+    public List<Post> createMany(List<Post> objs) {
         return jpaPostRepository.saveAllAndFlush(objs);
     }
 
     @Override
-    public Page<Post> getAllPostByUserId(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable) {
+    public Page<Post> getAllByUserId(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable) {
         log.info("getAllPostByUserId > dateRangeFilter: " + dateRangeFilter.toString());
         return jpaPostRepository.findAllByUserId(
                 userId,
@@ -64,12 +69,12 @@ public class PostRepositoryImpl implements PostRepository {
     }
 
     @Override
-    public Optional<Post> getPostById(UUID id) {
+    public Optional<Post> getById(UUID id) {
         return jpaPostRepository.findById(id);
     }
 
     @Override
-    public void deletePostById(UUID id) {
+    public void deleteById(UUID id) {
         jpaPostRepository.deleteById(id);
 
     }

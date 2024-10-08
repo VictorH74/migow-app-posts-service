@@ -11,18 +11,21 @@ import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFil
 import com.service.posts.migow.migow_posts_service.domain.entities.Post;
 
 public interface PostRepository {
-    Page<Post> getAllPostByUserId(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable);
+
+    Page<Post> getAllByUserId(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable);
 
     Page<Post> getAllFriendRecentPost(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable);
 
     Page<Post> getAllFriendPopularPost(UUID userId, DateRangeFilter dateRangeFilter, Pageable pageable);
 
-    Optional<Post> getPostById(UUID id);
+    Optional<Post> getById(UUID id);
 
-    List<Post> createManyPost(List<Post> objs);
+    List<Post> createMany(List<Post> objs);
 
-    Post createUpdatePost(Post obj);
+    Post createUpdate(Post obj);
 
-    void deletePostById(UUID id);
+    Long getShareCount(UUID postId);
+
+    void deleteById(UUID id);
 
 }

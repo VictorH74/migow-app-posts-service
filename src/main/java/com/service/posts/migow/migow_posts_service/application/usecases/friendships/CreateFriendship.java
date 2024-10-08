@@ -29,7 +29,7 @@ public class CreateFriendship implements CreateFriendshipUseCase {
         friendshipPK.setFriendUser(friendUser);
         Friendship f = new Friendship();
         f.setId(friendshipPK);
-        return friendshipRepository.createFriendship(f);
+        return friendshipRepository.create(f);
     }
 
 }

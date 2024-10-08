@@ -7,12 +7,13 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Friendship;
 import com.service.posts.migow.migow_posts_service.domain.entities.pks.FriendshipPK;
 
 public interface FriendshipRepository {
-    List<Friendship> createManyFriendship(List<Friendship> objs);
 
-    Friendship createFriendship(Friendship obj);
+    List<Friendship> createMany(List<Friendship> objs);
 
-    boolean getFriendshipStatus(UUID userId, UUID userId2);
+    Friendship create(Friendship obj);
 
-    void deleteFriendship(FriendshipPK id);
+    boolean getStatusByUserId(UUID userId, UUID userId2);
+
+    void delete(FriendshipPK id);
 
 }

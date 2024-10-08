@@ -7,7 +7,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ReactionTypeCountsDTO implements Serializable {
+public class ReactionCountByTypeDTO implements Serializable {
+
     private Long likeReaction;
     private Long funnyReaction;
     private Long loveReaction;

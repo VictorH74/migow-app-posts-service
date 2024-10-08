@@ -3,7 +3,7 @@ package com.service.posts.migow.migow_posts_service.application.dtos.reply_comme
 import java.time.Instant;
 import java.util.UUID;
 
-import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionTypeCountsDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionCountByTypeDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.users.SimpleUserDTO;
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 
@@ -13,13 +13,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SimpleReplyCommentDTO {
+
     private UUID id;
     private SimpleUserDTO owner;
     private UUID comment;
     private String content;
     private Instant createdAt;
     private Long reactCount;
-    private ReactionTypeCountsDTO reactionTypeCounts;
+    private ReactionCountByTypeDTO reactionCountByType;
 
     public SimpleReplyCommentDTO(ReplyComment replyComment) {
         this.id = replyComment.getId();

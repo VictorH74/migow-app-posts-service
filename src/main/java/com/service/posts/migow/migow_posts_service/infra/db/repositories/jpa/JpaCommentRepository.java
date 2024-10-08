@@ -11,10 +11,11 @@ import org.springframework.data.jpa.repository.Query;
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 
 public interface JpaCommentRepository extends JpaRepository<Comment, UUID> {
+
     @Query("SELECT COUNT(c) FROM Comment c WHERE c.postId = :postId")
     public Long countByPostId(UUID postId);
 
-    @Query("SELECT c FROM Comment c WHERE c.postId = :postId AND c.createdAt BETWEEN :startDate AND :endDate ORDER BY c.createdAt DESC")
-    public Page<Comment> findAllCommentByPostId(UUID postId, Instant startDate, Instant endDate, Pageable pageable);
+    @Query("SELECT c FROM Comment c WHERE c.id <> :excludeCommentId AND c.postId = :postId AND c.createdAt BETWEEN :startDate AND :endDate ORDER BY c.createdAt DESC")
+    public Page<Comment> findAllByPostId(UUID postId, UUID excludeCommentId, Instant startDate, Instant endDate, Pageable pageable);
 
 }

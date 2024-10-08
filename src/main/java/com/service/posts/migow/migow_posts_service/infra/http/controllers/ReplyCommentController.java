@@ -21,12 +21,14 @@ import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFil
 import com.service.posts.migow.migow_posts_service.application.dtos.reply_comments.CreateReplyCommentRequestDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.reply_comments.SimpleReplyCommentDTO;
 import com.service.posts.migow.migow_posts_service.application.dtos.reply_comments.UpdateReplyCommentDTO;
+import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.CreateReplyCommentUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.DeleteReplyCommentByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.GetAllCommentReplyUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.GetReplyCommentByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reply_comments.UpdateReplyCommentByIdUseCase;
-import com.service.posts.migow.migow_posts_service.infra.helpers.SecurityUtils;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -38,6 +40,7 @@ public class ReplyCommentController {
     private final CreateReplyCommentUseCase createReplyCommentUseCase;
     private final UpdateReplyCommentByIdUseCase updateReplyCommentByIdUseCase;
     private final DeleteReplyCommentByIdUseCase deleteReplyCommentByIdUseCase;
+    private final GetReplyCommentByIdUseCase getReplyCommentByIdUseCase;
 
     @GetMapping("/{commentId}")
     public Page<SimpleReplyCommentDTO> getReplyCommentByCommentId(
@@ -52,11 +55,17 @@ public class ReplyCommentController {
         return getAllReplyCommentByCommentIdUseCase.execute(commentId, dateRangeFilter, pageable);
     }
 
+    @GetMapping("/unique/{replyCommentId}")
+    public ReplyComment getMethodName(@PathVariable UUID replyCommentId) {
+        return getReplyCommentByIdUseCase.execute(replyCommentId);
+    }
+
     @PostMapping
-    public SimpleReplyCommentDTO createPostReplyComment(@RequestBody CreateReplyCommentRequestDTO obj) {
-        UUID userId = SecurityUtils.getAuthenticatedUserId();
+    public SimpleReplyCommentDTO createPostReplyComment(@RequestBody CreateReplyCommentRequestDTO obj,
+            HttpServletRequest request) {
+        UUID userId = UUID.fromString(request.getHeader("userId"));
         obj.setOwnerId(userId);
-        
+
         // TODO: provide created entity to kafka
         return createReplyCommentUseCase.execute(obj);
     }

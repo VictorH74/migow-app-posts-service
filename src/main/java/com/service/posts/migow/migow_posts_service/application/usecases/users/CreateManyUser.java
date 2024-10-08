@@ -18,7 +18,7 @@ public class CreateManyUser implements CreateManyUserUseCase {
 
     @Override
     public List<User> execute(List<User> objs) {
-        return userRepository.createManyUser(objs);
+        return userRepository.createMany(objs);
     }
 
 }

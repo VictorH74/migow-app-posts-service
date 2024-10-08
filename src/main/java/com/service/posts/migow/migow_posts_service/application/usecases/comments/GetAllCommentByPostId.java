@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.application.dtos.comments.CommentResponseDTO;
-import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionTypeCountsDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionCountByTypeDTO;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.CommentRepository;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.GetAllCommentByPostIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetTargetReactionTypeCountsUseCase;
@@ -25,18 +25,24 @@ public class GetAllCommentByPostId implements GetAllCommentByPostIdUseCase {
     private final GetReplyCommentCountByCommentIdUseCase getReplyCommentCountByCommentIdUseCase;
 
     @Override
-    public Page<CommentResponseDTO> execute(UUID postId, DateRangeFilter dateRangeFilter, Pageable pageable) {
-        return commentRepository.getAllCommentByPostId(postId, dateRangeFilter,pageable).map(c -> {
-            ReactionTypeCountsDTO reactionTypeCountsDTO = getTargetReactionTypeCountsUseCase.execute(c.getId(),
+    public Page<CommentResponseDTO> execute(UUID postId, String excludeCommentIdStr, DateRangeFilter dateRangeFilter, Pageable pageable) {
+        UUID excludeCommentId;
+        try {
+            excludeCommentId = UUID.fromString(excludeCommentIdStr);
+        } catch (Exception ex) {
+            excludeCommentId = UUID.randomUUID();
+        }
+        return commentRepository.getAllByPostId(postId, excludeCommentId, dateRangeFilter, pageable).map(c -> {
+            ReactionCountByTypeDTO reactionCountByTypeDTO = getTargetReactionTypeCountsUseCase.execute(c.getId(),
                     "comment_");
 
-            Long reactionCount = reactionTypeCountsDTO.reactionTotal();
+            Long reactionCount = reactionCountByTypeDTO.reactionTotal();
             Long replyCommentCount = getReplyCommentCountByCommentIdUseCase.execute(c.getId());
 
             CommentResponseDTO commentResDTO = new CommentResponseDTO(c);
             commentResDTO.setReactCount(reactionCount);
             commentResDTO.setReplyCommentCount(replyCommentCount);
-            commentResDTO.setReactionTypeCounts(reactionTypeCountsDTO);
+            commentResDTO.setReactionCountByType(reactionCountByTypeDTO);
 
             return commentResDTO;
         });

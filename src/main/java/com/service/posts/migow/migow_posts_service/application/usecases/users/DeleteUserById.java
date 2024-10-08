@@ -12,11 +12,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class DeleteUserById implements DeleteUserByIdUseCase {
+
     private final UserRepository userRepository;
 
     @Override
     public void execute(UUID id) {
-        userRepository.deleteUserById(id);
+        userRepository.deleteById(id);
 
     }
 

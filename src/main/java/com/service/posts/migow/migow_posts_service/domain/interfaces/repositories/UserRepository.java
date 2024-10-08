@@ -7,13 +7,14 @@ import java.util.UUID;
 import com.service.posts.migow.migow_posts_service.domain.entities.User;
 
 public interface UserRepository {
-    List<User> createManyUser(List<User> objs);
 
-    User createUpdateUser(User obj);
+    List<User> createMany(List<User> objs);
 
-    Optional<User> getUserById(UUID id);
+    User createUpdate(User obj);
 
-    Optional<User> getUserByUsername(String username);
+    Optional<User> getById(UUID id);
 
-    void deleteUserById(UUID id);
+    Optional<User> getByUsername(String username);
+
+    void deleteById(UUID id);
 }

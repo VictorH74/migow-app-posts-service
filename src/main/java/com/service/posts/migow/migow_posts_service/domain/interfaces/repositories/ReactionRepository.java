@@ -10,21 +10,24 @@ import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFil
 import com.service.posts.migow.migow_posts_service.domain.entities.Reaction;
 
 public interface ReactionRepository {
-    Long getReactionCountByTarget(String target);
 
-    Page<Reaction> getAllTargetReaction(String target, String usernamePrefix, DateRangeFilter dateRangeFilter,
+    Reaction createUpdate(Reaction obj);
+
+    Long getCountByTarget(String target);
+
+    Optional<Reaction> getById(UUID id);
+
+    Optional<Reaction> getByOwnerId(UUID ownerId, String target);
+
+    Page<Reaction> getAllByTarget(String target, String usernamePrefix, DateRangeFilter dateRangeFilter,
             Pageable pageable);
 
-    Page<Reaction> getAllTargetReactionByReactionType(String target, String usernamePrefix, int reactionTypeCode,
+    Page<Reaction> getAllByTargetAndReactionType(String target, String usernamePrefix, int reactionTypeCode,
             DateRangeFilter dateRangeFilter, Pageable pageable);
 
     Long getCountByReactionType(String target, int reactionTypeCode);
 
-    Optional<Reaction> getReactionByOwnerId(UUID ownerId, String target);
-
-    Reaction createUpdateReaction(Reaction obj);
-
-    void deleteReactionById(UUID id);
+    void deleteById(UUID id);
 
     void deleteAllByTarget(String target);
 }

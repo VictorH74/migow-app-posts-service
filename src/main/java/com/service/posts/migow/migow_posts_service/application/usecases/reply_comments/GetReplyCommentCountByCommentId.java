@@ -12,11 +12,12 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Component
 public class GetReplyCommentCountByCommentId implements GetReplyCommentCountByCommentIdUseCase {
+
     private final ReplyCommentRepository replyCommentRepository;
 
     @Override
     public Long execute(UUID commentId) {
-        return replyCommentRepository.getReplyCommentCountByCommentId(commentId);
+        return replyCommentRepository.getCountByCommentId(commentId);
     }
 
 }

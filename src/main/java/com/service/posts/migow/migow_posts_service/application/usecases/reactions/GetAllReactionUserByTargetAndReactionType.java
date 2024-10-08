@@ -6,28 +6,29 @@ import org.springframework.stereotype.Component;
 
 import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFilter;
 import com.service.posts.migow.migow_posts_service.application.dtos.users.ReactionSimpleUserDTO;
+import com.service.posts.migow.migow_posts_service.domain.enums.ReactionType;
 import com.service.posts.migow.migow_posts_service.domain.helpers.validators.ReactionTargetValidator;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.repositories.ReactionRepository;
-import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllTargetReactionUserUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllReactionUserByTargetAndReactionTypeUseCase;
 
 import lombok.AllArgsConstructor;
 
 @Component
 @AllArgsConstructor
-public class GetAllTargetReactionUser implements GetAllTargetReactionUserUseCase {
+public class GetAllReactionUserByTargetAndReactionType implements GetAllReactionUserByTargetAndReactionTypeUseCase {
+
     private final ReactionRepository repository;
 
     @Override
-    public Page<ReactionSimpleUserDTO> execute(String target, String usernamePrefix, DateRangeFilter dateRangeFilter,
-            Pageable pageable) {
-
-        if (ReactionTargetValidator.validateString(target))
-            return repository.getAllTargetReaction(
-                    target,
+    public Page<ReactionSimpleUserDTO> execute(String target, String usernamePrefix, int reactionTypeCode,
+            DateRangeFilter dateRangeFilter, Pageable pageable) {
+        if (ReactionTargetValidator.validateString(target)) {
+            return repository.getAllByTargetAndReactionType(target,
                     usernamePrefix,
-                    dateRangeFilter,
-                    pageable)
+                    ReactionType.valueOf(reactionTypeCode).getCode(),
+                    dateRangeFilter, pageable)
                     .map(r -> new ReactionSimpleUserDTO(r.getOwner(), r.getType()));
+        }
 
         throw new IllegalArgumentException("Invalid target format!");
     }

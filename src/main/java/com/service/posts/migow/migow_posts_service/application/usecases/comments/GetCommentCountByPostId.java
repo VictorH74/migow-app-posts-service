@@ -17,7 +17,7 @@ public class GetCommentCountByPostId implements GetCommentCountByPostIdUseCase {
 
     @Override
     public Long execute(UUID postId) {
-        return commentRepository.getCommentCountByPostId(postId);
+        return commentRepository.getCountByPostId(postId);
     }
 
 }

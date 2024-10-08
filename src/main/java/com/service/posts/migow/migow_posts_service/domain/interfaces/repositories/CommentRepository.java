@@ -11,15 +11,16 @@ import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFil
 import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 
 public interface CommentRepository {
-    Page<Comment> getAllCommentByPostId(UUID postId, DateRangeFilter dateRangeFilter, Pageable pageable);
 
-    List<Comment> createManyComment(List<Comment> objs);
+    Page<Comment> getAllByPostId(UUID postId, UUID excludeCommentId, DateRangeFilter dateRangeFilter, Pageable pageable);
 
-    Comment createUpdateComment(Comment obj);
+    List<Comment> createMany(List<Comment> objs);
 
-    Optional<Comment> getCommentById(UUID id);
+    Comment createUpdate(Comment obj);
 
-    Long getCommentCountByPostId(UUID postId);
+    Optional<Comment> getById(UUID id);
 
-    void deleteCommentById(UUID id);
+    Long getCountByPostId(UUID postId);
+
+    void deleteById(UUID id);
 }

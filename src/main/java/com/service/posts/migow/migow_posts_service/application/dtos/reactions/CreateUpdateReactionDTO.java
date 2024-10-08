@@ -8,8 +8,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CreateUpdateReactionDTO {
+
     private UUID id;
     private int type;
     private UUID ownerId;
-    private String target;
+    private String targetType;
+    private UUID targetId;
 }

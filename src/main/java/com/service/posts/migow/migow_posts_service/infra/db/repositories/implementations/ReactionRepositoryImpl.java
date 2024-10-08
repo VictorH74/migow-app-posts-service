@@ -17,11 +17,17 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Repository
 public class ReactionRepositoryImpl implements ReactionRepository {
+
     private final JpaReactionRepository jpaReactionRepository;
 
     @Override
-    public Optional<Reaction> getReactionByOwnerId(UUID ownerId, String target) {
-        return jpaReactionRepository.findReactionByOwnerId(ownerId, target);
+    public Optional<Reaction> getById(UUID id) {
+        return jpaReactionRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Reaction> getByOwnerId(UUID ownerId, String target) {
+        return jpaReactionRepository.findByOwnerId(ownerId, target);
     }
 
     @Override
@@ -31,12 +37,12 @@ public class ReactionRepositoryImpl implements ReactionRepository {
     }
 
     @Override
-    public Reaction createUpdateReaction(Reaction obj) {
+    public Reaction createUpdate(Reaction obj) {
         return jpaReactionRepository.save(obj);
     }
 
     @Override
-    public void deleteReactionById(UUID id) {
+    public void deleteById(UUID id) {
         jpaReactionRepository.deleteById(id);
 
     }
@@ -47,7 +53,7 @@ public class ReactionRepositoryImpl implements ReactionRepository {
     }
 
     @Override
-    public Page<Reaction> getAllTargetReactionByReactionType(String target, String usernamePrefix, int reactionTypeCode,
+    public Page<Reaction> getAllByTargetAndReactionType(String target, String usernamePrefix, int reactionTypeCode,
             DateRangeFilter dateRangeFilter, Pageable pageable) {
         return jpaReactionRepository.findAllByReactioType(
                 target,
@@ -59,7 +65,7 @@ public class ReactionRepositoryImpl implements ReactionRepository {
     }
 
     @Override
-    public Page<Reaction> getAllTargetReaction(String target, String usernamePrefix, DateRangeFilter dateRangeFilter,
+    public Page<Reaction> getAllByTarget(String target, String usernamePrefix, DateRangeFilter dateRangeFilter,
             Pageable pageable) {
         return jpaReactionRepository.findAll(
                 target,
@@ -70,7 +76,7 @@ public class ReactionRepositoryImpl implements ReactionRepository {
     }
 
     @Override
-    public Long getReactionCountByTarget(String target) {
+    public Long getCountByTarget(String target) {
         return jpaReactionRepository.countByTarget(target);
     }
 

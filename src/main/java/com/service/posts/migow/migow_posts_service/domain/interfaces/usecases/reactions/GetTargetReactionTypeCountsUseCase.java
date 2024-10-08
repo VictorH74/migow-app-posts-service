@@ -2,8 +2,9 @@ package com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.r
 
 import java.util.UUID;
 
-import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionTypeCountsDTO;
+import com.service.posts.migow.migow_posts_service.application.dtos.reactions.ReactionCountByTypeDTO;
 
 public interface GetTargetReactionTypeCountsUseCase {
-    ReactionTypeCountsDTO execute(UUID targetId, String targetClass);
+
+    ReactionCountByTypeDTO execute(UUID targetId, String targetClass);
 }

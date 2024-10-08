@@ -18,40 +18,42 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Repository
 public class CommentRepositoryImpl implements CommentRepository {
+
     private final JpaCommentRepository jpaCommentRepository;
 
     @Override
-    public Page<Comment> getAllCommentByPostId(UUID postId, DateRangeFilter dateRangeFilter, Pageable pageable) {
-        return jpaCommentRepository.findAllCommentByPostId(
+    public Page<Comment> getAllByPostId(UUID postId, UUID excludeCommentId, DateRangeFilter dateRangeFilter, Pageable pageable) {
+        return jpaCommentRepository.findAllByPostId(
                 postId,
+                excludeCommentId,
                 dateRangeFilter.getStartDate(),
                 dateRangeFilter.getEndDate(),
                 pageable);
     }
 
     @Override
-    public Optional<Comment> getCommentById(UUID id) {
+    public Optional<Comment> getById(UUID id) {
         return jpaCommentRepository.findById(id);
     }
 
     @Override
-    public List<Comment> createManyComment(List<Comment> objs) {
+    public List<Comment> createMany(List<Comment> objs) {
         return jpaCommentRepository.saveAll(objs);
     }
 
     @Override
-    public Comment createUpdateComment(Comment obj) {
+    public Comment createUpdate(Comment obj) {
         return jpaCommentRepository.save(obj);
     }
 
     @Override
-    public void deleteCommentById(UUID id) {
+    public void deleteById(UUID id) {
         jpaCommentRepository.deleteById(id);
 
     }
 
     @Override
-    public Long getCommentCountByPostId(UUID postId) {
+    public Long getCountByPostId(UUID postId) {
         return jpaCommentRepository.countByPostId(postId);
     }
 

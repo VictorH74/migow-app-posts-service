@@ -14,11 +14,12 @@ import lombok.AllArgsConstructor;
 @Component
 @AllArgsConstructor
 public class GetCommentById implements GetCommentByIdUseCase {
+
     private final CommentRepository commentRepository;
 
     @Override
     public Comment execute(UUID id) {
-        return commentRepository.getCommentById(id)
+        return commentRepository.getById(id)
                 .orElseThrow(() -> new CommentNotFoundException(String.format("Comment with id '%s' not found!", id)));
     }
 

@@ -1,6 +1,7 @@
 package com.service.posts.migow.migow_posts_service.domain.interfaces.repositories;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -10,14 +11,17 @@ import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFil
 import com.service.posts.migow.migow_posts_service.domain.entities.ReplyComment;
 
 public interface ReplyCommentRepository {
-    Page<ReplyComment> getAllReplyCommentByCommentId(UUID commentId, DateRangeFilter dateRangeFilter, Pageable pageable);
 
-    Long getReplyCommentCountByCommentId(UUID commentId);
+    Optional<ReplyComment> getById(UUID id);
 
-    List<ReplyComment> createManyReplyComment(List<ReplyComment> objs);
+    Page<ReplyComment> getAllByCommentId(UUID commentId, DateRangeFilter dateRangeFilter, Pageable pageable);
 
-    ReplyComment createUpdateReplyComment(ReplyComment obj);
+    Long getCountByCommentId(UUID commentId);
 
-    void deleteReplyCommentById(UUID id);
+    List<ReplyComment> createMany(List<ReplyComment> objs);
+
+    ReplyComment createUpdate(ReplyComment obj);
+
+    void deleteById(UUID id);
 
 }

@@ -9,5 +9,6 @@ import com.service.posts.migow.migow_posts_service.application.dtos.DateRangeFil
 import com.service.posts.migow.migow_posts_service.application.dtos.comments.CommentResponseDTO;
 
 public interface GetAllCommentByPostIdUseCase {
-    Page<CommentResponseDTO> execute(UUID postId, DateRangeFilter dateRangeFilter, Pageable pageable);
+
+    Page<CommentResponseDTO> execute(UUID postId, String excludeCommentId, DateRangeFilter dateRangeFilter, Pageable pageable);
 }

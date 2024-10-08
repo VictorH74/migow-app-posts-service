@@ -22,21 +22,22 @@ import com.service.posts.migow.migow_posts_service.application.dtos.reactions.Si
 import com.service.posts.migow.migow_posts_service.application.dtos.users.ReactionSimpleUserDTO;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.CreateUpdateReactionUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.DeleteReactionByIdUseCase;
-import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllTargetReactionUserByReactionTypeUseCase;
-import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllTargetReactionUserUseCase;
-import com.service.posts.migow.migow_posts_service.infra.helpers.SecurityUtils;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllReactionUserByTargetAndReactionTypeUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetAllReactionUserByTargetUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.reactions.GetReactionByIdUseCase;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
-
 
 @RestController
 @RequestMapping("reactions")
 @AllArgsConstructor
 public class ReactionController {
 
-    private final GetAllTargetReactionUserUseCase getAllTargetReactionUserUseCase;
-    private final GetAllTargetReactionUserByReactionTypeUseCase getAllTargetReactionUserByReactionTypeUseCase;
+    private final GetAllReactionUserByTargetUseCase getAllTargetReactionUserUseCase;
+    private final GetAllReactionUserByTargetAndReactionTypeUseCase getAllTargetReactionUserByReactionTypeUseCase;
     private final CreateUpdateReactionUseCase createReactionUseCase;
+    private final GetReactionByIdUseCase getReactionByIdUseCase;
     private final DeleteReactionByIdUseCase deleteReactionByIdUseCase;
 
     @GetMapping("/with-target/{target}")
@@ -69,19 +70,24 @@ public class ReactionController {
     }
 
     @PostMapping
-    public SimpleReactionDTO createUpdateReaction(@RequestBody CreateUpdateReactionDTO obj) {
-        UUID userId = SecurityUtils.getAuthenticatedUserId();
+    public SimpleReactionDTO createUpdateReaction(@RequestBody CreateUpdateReactionDTO obj,
+            HttpServletRequest request) {
+        UUID userId = UUID.fromString(request.getHeader("userId"));
         obj.setOwnerId(userId);
         // TODO: provide created entity to kafka  
         return createReactionUseCase.execute(obj);
     }
-    
+
+    @GetMapping("/{reactionId}")
+    public SimpleReactionDTO getReactionById(@PathVariable UUID reactionId) {
+        return getReactionByIdUseCase.execute(reactionId);
+    }
 
     @DeleteMapping("/{reactionId}")
     public ResponseEntity<String> deleteReaction(@PathVariable UUID reactionId) {
         // TODO: provide created entity to kafka
         deleteReactionByIdUseCase.execute(reactionId);
         return ResponseEntity.status(HttpStatus.OK).body(String.format("Reaction with id '%s' deleted!", reactionId));
-    } 
+    }
 
 }

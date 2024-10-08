@@ -1,6 +1,7 @@
 package com.service.posts.migow.migow_posts_service.infra.db.repositories.implementations;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.domain.Page;
@@ -17,12 +18,13 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 @Repository
 public class ReplyCommentRepositoryImpl implements ReplyCommentRepository {
+
     private final JpaReplyCommentRepository jpaReplyCommentRepository;
 
     @Override
-    public Page<ReplyComment> getAllReplyCommentByCommentId(UUID commentId, DateRangeFilter dateRangeFilter,
+    public Page<ReplyComment> getAllByCommentId(UUID commentId, DateRangeFilter dateRangeFilter,
             Pageable pageable) {
-        return jpaReplyCommentRepository.findAllReplyCommentByCommentId(
+        return jpaReplyCommentRepository.findAllByCommentId(
                 commentId,
                 dateRangeFilter.getStartDate(),
                 dateRangeFilter.getEndDate(),
@@ -30,24 +32,29 @@ public class ReplyCommentRepositoryImpl implements ReplyCommentRepository {
     }
 
     @Override
-    public ReplyComment createUpdateReplyComment(ReplyComment obj) {
+    public ReplyComment createUpdate(ReplyComment obj) {
         return jpaReplyCommentRepository.save(obj);
     }
 
     @Override
-    public List<ReplyComment> createManyReplyComment(List<ReplyComment> objs) {
+    public List<ReplyComment> createMany(List<ReplyComment> objs) {
         return jpaReplyCommentRepository.saveAll(objs);
     }
 
     @Override
-    public void deleteReplyCommentById(UUID id) {
+    public void deleteById(UUID id) {
         jpaReplyCommentRepository.deleteById(id);
 
     }
 
     @Override
-    public Long getReplyCommentCountByCommentId(UUID commentId) {
+    public Long getCountByCommentId(UUID commentId) {
         return jpaReplyCommentRepository.countByCommentId(commentId);
+    }
+
+    @Override
+    public Optional<ReplyComment> getById(UUID id) {
+        return jpaReplyCommentRepository.findById(id);
     }
 
 }

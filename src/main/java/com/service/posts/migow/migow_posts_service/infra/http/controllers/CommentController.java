@@ -25,46 +25,57 @@ import com.service.posts.migow.migow_posts_service.domain.entities.Comment;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.CreateCommentUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.DeleteCommentByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.GetAllCommentByPostIdUseCase;
+import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.GetCommentByIdUseCase;
 import com.service.posts.migow.migow_posts_service.domain.interfaces.usecases.comments.UpdateCommentByIdUseCase;
-import com.service.posts.migow.migow_posts_service.infra.helpers.SecurityUtils;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 @RestController
 @RequestMapping("comments")
 @AllArgsConstructor
+@Log4j2
 public class CommentController {
 
     private final GetAllCommentByPostIdUseCase getAllCommentByPostIdUseCase;
     private final CreateCommentUseCase createCommentUseCase;
     private final UpdateCommentByIdUseCase updateCommentByIdUseCase;
     private final DeleteCommentByIdUseCase deleteCommentByIdUseCase;
+    private final GetCommentByIdUseCase getCommentByIdUseCase;
 
     @GetMapping("/{postId}")
     public Page<CommentResponseDTO> getAllPostComment(
             @PathVariable UUID postId,
+            @RequestParam(name = "excludeCommentId", defaultValue = "") String excludeCommentId,
             @RequestParam(name = "startDate", defaultValue = "") String startDate,
             @RequestParam(name = "endDate", defaultValue = "") String endDate,
             @RequestParam(name = "pageNumber", defaultValue = "0") int pageNumber,
             @RequestParam(name = "pageSize", defaultValue = "10") int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
         DateRangeFilter dateRangeFilter = DateRangeFilter.of(startDate, endDate);
-        return getAllCommentByPostIdUseCase.execute(postId, dateRangeFilter, pageable);
+        log.info(postId);
+        log.info(excludeCommentId);
+        return getAllCommentByPostIdUseCase.execute(postId, excludeCommentId, dateRangeFilter, pageable);
     }
 
     @PostMapping
-    public Comment createPostComment(@RequestBody CreateCommentDTO obj) {
-        UUID userId = SecurityUtils.getAuthenticatedUserId();
+    public Comment createPostComment(@RequestBody CreateCommentDTO obj,
+            HttpServletRequest request) {
+        UUID userId = UUID.fromString(request.getHeader("userId"));
 
         obj.setUserId(userId);
-        // TODO: provide created entity to kafka
 
         return createCommentUseCase.execute(obj);
     }
 
+    @GetMapping("/unique/{commentId}")
+    public Comment getUniqueComment(@PathVariable UUID commentId) {
+        return getCommentByIdUseCase.execute(commentId);
+    }
+
     @PatchMapping("/{commentId}")
     public Comment updatePostComment(@PathVariable UUID commentId, @RequestBody UpdateCommentDTO obj) {
-        // TODO: provide created entity to kafka
 
         return updateCommentByIdUseCase.execute(commentId, obj);
     }
@@ -72,8 +83,7 @@ public class CommentController {
     @DeleteMapping("/{commentId}")
     public ResponseEntity<String> deleteComment(@PathVariable UUID commentId) {
         deleteCommentByIdUseCase.execute(commentId);
-        // TODO: provide created entity to kafka
-        
+
         return ResponseEntity.status(HttpStatus.OK).body(String.format("Comment with id '$s' deleted!", commentId));
     }
 
