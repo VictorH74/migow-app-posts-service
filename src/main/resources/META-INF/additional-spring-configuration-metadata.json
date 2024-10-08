@@ -1,0 +1,64 @@
+{
+  "properties": [
+    {
+      "name": "kafka.topic.postCreated",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.postCreated'"
+    },
+    {
+      "name": "kafka.topic.commentCreated",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.commentCreated'"
+    },
+    {
+      "name": "kafka.topic.replyCommentCreated",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.replyCommentCreated'"
+    },
+    {
+      "name": "kafka.topic.postReactionCreated",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.postReactionCreated'"
+    },
+    {
+      "name": "kafka.topic.commentReactionCreated",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.commentReactionCreated'"
+    },
+    {
+      "name": "kafka.topic.replyCommentReactionCreated",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.replyCommentReactionCreated'"
+    },
+    {
+      "name": "kafka.topic.postDeleted",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.postDeleted'"
+    },
+    {
+      "name": "kafka.topic.commentDeleted",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.commentDeleted'"
+    },
+    {
+      "name": "kafka.topic.replyCommentDeleted",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.replyCommentDeleted'"
+    },
+    {
+      "name": "kafka.topic.reactionDeleted",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.reactionDeleted'"
+    },
+    {
+      "name": "kafka.topic.sharedPostCreated",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.sharedPostCreated'"
+    },
+    {
+      "name": "kafka.topic.sharedPostDeleted",
+      "type": "java.lang.String",
+      "description": "A description for 'kafka.topic.sharedPostDeleted'"
+    }
+  ]
+}
